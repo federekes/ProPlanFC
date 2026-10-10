@@ -9,22 +9,22 @@
 <title>PROPLAN FC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap">
 <style>
 /* Layout: club site at night. Sticky top bar with crest + sections; each year is its own "matchday program". Single dark look by choice (club colors). */
 :root{
-  --night:#050608;      /* fondo negro */
+  --night:#060A14;      /* fondo azul noche */
   --pitch:#0E1830;      /* superficie azul */
   --pitch2:#152443;     /* superficie elevada */
   --line:#1D2A47;       /* divisores */
-  --black2:#0B0D12;     /* negro elevado (barra y pie) */
+  --black2:#0A1122;     /* azul noche elevado (barra y pie) */
   --ink:#F3F5FA;        /* texto */
   --ink2:#B9C3D9;       /* texto secundario */
   --muted:#7E8AA6;      /* etiquetas */
   --crest:#2B57E0;      /* azul del escudo, acento */
   --crest-ink:#9DB6FF;  /* azul para texto sobre fondo oscuro */
-  --gold:#E7B547;       /* estrellas */
-  --draw:#C79A2E;       /* empate / amarilla */
+  --gold:#C9D2E3;       /* acento plateado */
+  --draw:#7D89A3;       /* empate */
   --loss:#D9524A;       /* derrota / roja */
   --win:#3E6BF0;        /* victoria */
   --f-display:"Big Shoulders Display","Barlow Condensed","Arial Narrow",sans-serif;
@@ -49,7 +49,7 @@ button{font:inherit;color:inherit}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);flex:none}
 .brand svg{width:30px;height:auto}
 .brand b{font-family:var(--f-display);font-weight:900;font-size:22px;letter-spacing:.02em}
-.brand i{font-style:normal;color:var(--gold);font-family:var(--f-label);font-weight:600;font-size:16px}
+.brand i{font-style:italic;color:var(--gold);font-family:var(--f-body);font-weight:400;font-size:15px;letter-spacing:.01em}
 .nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;justify-content:flex-end}
 .nav::-webkit-scrollbar{display:none}
 .nav a{flex:none;text-decoration:none;color:var(--ink2);font-family:var(--f-label);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;padding:7px 10px;border-radius:6px}
@@ -78,9 +78,10 @@ section+section{border-top:1px solid var(--line)}
 .hero::after{content:none}
 .hero-in{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding-block:56px 72px;gap:14px}
 .hero-in svg{width:clamp(110px,22vw,150px);height:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,.5))}
-.hero h1{font-family:var(--f-display);font-weight:900;font-size:clamp(64px,15vw,132px);line-height:.85;letter-spacing:.01em}
-.hero .sub{font-family:var(--f-label);font-weight:700;font-size:clamp(24px,5vw,34px);color:var(--gold);letter-spacing:.02em;margin-top:-4px}
-.hero .meta{color:var(--ink2);font-family:var(--f-label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:15px}
+.hero h1{font-family:var(--f-display);font-weight:900;font-size:clamp(46px,10vw,66px);line-height:.9;letter-spacing:.02em}
+.hero .yrs{font-family:var(--f-display);font-weight:800;font-size:clamp(18px,3.4vw,24px);letter-spacing:.12em;color:var(--ink2);margin-top:-6px}
+.hero .sub{font-family:var(--f-body);font-style:italic;font-weight:300;font-size:clamp(18px,3.6vw,24px);color:var(--gold);letter-spacing:.02em}
+.hero .meta{color:var(--muted);font-family:var(--f-label);font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:11.5px}
 .hero .years{justify-content:center;margin-top:10px}
 
 /* tiles */
@@ -89,7 +90,7 @@ section+section{border-top:1px solid var(--line)}
 .tile .v{font-family:var(--f-display);font-weight:900;font-size:44px;line-height:1}
 .tile .l{font-family:var(--f-label);font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-top:4px}
 .tile .s{color:var(--muted);font-size:13px}
-.v.w{color:var(--crest-ink)}.v.d{color:var(--gold)}.v.l{color:#FF8B83}
+.v.vw{color:var(--crest-ink)}.v.vd{color:var(--gold)}.v.vl{color:#E58C86}
 
 /* palmarés */
 .palm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
@@ -156,7 +157,7 @@ section+section{border-top:1px solid var(--line)}
 /* partidos */
 .form{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0 4px}
 .form button{width:24px;height:24px;border-radius:5px;border:0;cursor:pointer;font-family:var(--f-label);font-weight:700;font-size:13px;color:#fff}
-.W{background:var(--win)}.D{background:var(--draw)}.L{background:var(--loss)}
+.rs-W{background:var(--win)}.rs-D{background:var(--draw)}.rs-L{background:var(--loss)}
 .matches{display:flex;flex-direction:column}
 .mt{border-bottom:1px solid var(--line);position:relative}
 .mt.hasf>button{grid-template-columns:92px minmax(0,1fr) 100px 70px 18px}
@@ -181,7 +182,7 @@ section+section{border-top:1px solid var(--line)}
 .ficha .kv div{display:flex;gap:8px}.ficha .kv span{color:var(--muted);min-width:64px}
 .balls{color:var(--gold);font-size:12px;letter-spacing:1px}
 .cd{display:inline-block;width:10px;height:14px;border-radius:2px;vertical-align:-2px}
-.cd.y{background:var(--draw)}.cd.r{background:var(--loss)}
+.cd.y{background:#E3B93B}.cd.r{background:var(--loss)}
 .lu{display:flex;flex-wrap:wrap;gap:6px}
 .lu span{display:flex;align-items:center;gap:6px;background:var(--pitch);border:1px solid var(--line);border-radius:999px;padding:2px 10px 2px 2px;font-size:13.5px;cursor:pointer}
 
@@ -522,7 +523,7 @@ function matchRow(m, withTour = false) {
   return `<div class="mt${fb ? ' hasf' : ''}"><button aria-expanded="false">
       <span class="dt">${fmtD(m.d)}<small>${withTour ? esc(m.t.s) : esc(m.f || '')}</small></span>
       <span class="rival"><b>${esc(m.r)}</b>${ph}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
-      <span class="score ${r}">${m.gf}-${m.gc}</span>
+      <span class="score rs-${r}">${m.gf}-${m.gc}</span>
       <span class="chev" aria-hidden="true">›</span></button>
     ${fb}<div class="ficha" hidden data-mi="${mi}"></div></div>`;
 }
@@ -666,6 +667,27 @@ const VIDEOS = [
   ,{id: 'cl23-f11-gatos', tour: 'Cl 23', rival: 'Los Gatos FC', d: '13/11/2023', ord: 1, title: "Los Gatos 1-0 Pro-Plan", sub: 'Clausura 2023 · 11.ª fecha',
    src: 'videos/cl23-f11-gatos.mp4', poster: 'videos/cl23-f11-gatos.jpg', dur: '1:23',
    chapters: [[0, "El gol"], [16.9, "Habla un jugador de Los Gatos"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-semi-chacarita', tour: 'Cl 23', rival: 'Chacarita FC', d: '20/11/2023', ord: 1, title: "Pro-Plan 2-1 Chacarita", sub: 'Clausura 2023 · Semifinal Copa de Oro',
+   src: 'videos/cl23-semi-chacarita.mp4', poster: 'videos/cl23-semi-chacarita.jpg', dur: '1:54',
+   chapters: [[0, "Goles"], [23, "Entrevista"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-cofinal-gatos-previa', tour: 'Cl 23', rival: 'Los Gatos FC', d: '27/11/2023', ord: 1, title: "Previa de la final: Los Gatos vs Pro-Plan", sub: 'Clausura 2023 · Final Copa de Oro',
+   src: 'videos/cl23-cofinal-gatos-previa.mp4', poster: 'videos/cl23-cofinal-gatos-previa.jpg', dur: '2:00',
+   chapters: [[0, "La previa"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-cofinal-gatos', tour: 'Cl 23', rival: 'Los Gatos FC', d: '27/11/2023', ord: 2, title: "Final: Los Gatos 3-1 Pro-Plan", sub: 'Clausura 2023 · Final Copa de Oro',
+   src: 'videos/cl23-cofinal-gatos.mp4', poster: 'videos/cl23-cofinal-gatos.jpg', dur: '4:53',
+   chapters: [[0, "El partido"], [256, "Los Gatos campeón"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-anual-previa', tour: 'Cl 23', rival: 'Los Gatos FC', d: '04/12/2023', ord: 1, title: "Previa de la final anual: Los Gatos vs Pro-Plan", sub: 'Final Anual 2023',
+   src: 'videos/cl23-anual-previa.mp4', poster: 'videos/cl23-anual-previa.jpg', dur: '2:51',
+   chapters: [[0, "La previa"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-anual-1', tour: 'Cl 23', rival: 'Los Gatos FC', d: '04/12/2023', ord: 2, title: "Final anual: Los Gatos 2-3 Pro-Plan (1.ª parte)", sub: 'Final Anual 2023',
+   src: 'videos/cl23-anual-1.mp4', poster: 'videos/cl23-anual-1.jpg', dur: '5:03',
+   chapters: [[0, "El partido"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-anual-2', tour: 'Cl 23', rival: 'Los Gatos FC', d: '04/12/2023', ord: 3, title: "Final anual: Los Gatos 2-3 Pro-Plan (2.ª parte)", sub: 'Final Anual 2023 · ¡Campeones!',
+   src: 'videos/cl23-anual-2.mp4', poster: 'videos/cl23-anual-2.jpg', dur: '5:10',
+   chapters: [[0, "Sigue el partido"], [45, "El gol del campeonato"], [97, "El festejo"], [114, "Habla Federico Moratorio, presidente"], [183, "Habla Mateo D'Angelo"], [251, "Habla Ismael Espiga"], [269, "Habla Lucas Muñoz"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl23-anual-premiacion', tour: 'Cl 23', rival: 'Los Gatos FC', d: '04/12/2023', ord: 4, title: "La premiación: ¡Pro-Plan campeón!", sub: 'Final Anual 2023',
+   src: 'videos/cl23-anual-premiacion.mp4', poster: 'videos/cl23-anual-premiacion.jpg', dur: '0:50',
+   chapters: [[0, "La copa"], [22, "Hablan Juan Caubarrere y Gabriel Ruiz"]], credit: 'Gentileza: Punta Sport TV'}
 ];
 VIDEOS.sort((a, b) => a.d.split('/').reverse().join('').localeCompare(b.d.split('/').reverse().join('')) || (a.ord || 0) - (b.ord || 0));
 const VREG = [];
@@ -755,13 +777,13 @@ function viewInicio() {
   const faces = Object.keys(DATA.photos).sort((a, b) => PL[b].pj - PL[a].pj);
   const titles = [['Clausura 2024', 'Campeón invicto', 2024], ['"Uruguayo" 2023', 'Campeón del Torneo Anual', 2023], ['"Uruguayo" 2024', 'Bicampeón del Torneo Anual', 2024]];
   const vices = [['Clausura 2020', 2020], ['Clausura 2022', 2022], ['Apertura 2023', 2023], ['Clausura 2023', 2023], ['Apertura 2024', 2024], ['"Uruguayo" 2025', 2025]];
-  const cup = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#E7B547" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg>`;
+  const cup = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg>`;
   const medal = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#9DB6FF" stroke-width="1.6"><circle cx="12" cy="15" r="5"/><path d="M8 3l4 7 4-7"/></svg>`;
   const sc = [...DATA.players].sort((a, b) => b.g - a.g || a.pj - b.pj);
   return `
   <section class="hero" id="top">
-    <div class="wrap hero-in">${crestSVG()}<h1>PROPLAN FC</h1><div class="sub">#elmejorequipro</div>
-      <div class="meta">Superliga SportCenter · Fútbol 11 +30 · 2020 – 2026</div>
+    <div class="wrap hero-in">${crestSVG()}<h1>PROPLAN FC</h1><div class="yrs num">2020 – 2026</div><div class="sub">#elmejorequipro</div>
+      <div class="meta">Superliga SportCenter · Fútbol 11 +30</div>
       </div>
     ${tpurl('Cl 26') ? `<figure class="hero-photo"><img src="${tpurl('Cl 26')}" alt="Plantel de Pro-Plan FC en el Clausura 2026"><figcaption>Plantel · Clausura 2026 · Gentileza SportCenter y PuntaSport TV</figcaption></figure>` : ''}
     <div class="wrap"><div class="years" style="justify-content:center;padding-bottom:36px">${YEARS.map(y => `<a class="yr${[2023, 2024].includes(y) ? ' star' : ''}" href="#a${y}">${y}</a>`).join('')}</div></div></section>
@@ -771,11 +793,11 @@ function viewInicio() {
     <div class="tiles">
       <div class="tile"><div class="v num">14</div><div class="l">Campeonatos</div></div>
       <div class="tile"><div class="v num">${TOT.pj}</div><div class="l">Partidos</div></div>
-      <div class="tile"><div class="v w num">${TOT.w}</div><div class="l">Victorias</div><div class="s">${Math.round(TOT.w/TOT.pj*100)}% de los partidos</div></div>
-      <div class="tile"><div class="v d num">${TOT.d}</div><div class="l">Empates</div></div>
-      <div class="tile"><div class="v l num">${TOT.l}</div><div class="l">Derrotas</div></div>
-      <div class="tile"><div class="v w num">${TOT.gf}</div><div class="l">Goles a favor</div><div class="s">2,7 por partido</div></div>
-      <div class="tile"><div class="v l num">${TOT.gc}</div><div class="l">Goles en contra</div><div class="s">1,4 por partido</div></div>
+      <div class="tile"><div class="v vw num">${TOT.w}</div><div class="l">Victorias</div><div class="s">${Math.round(TOT.w/TOT.pj*100)}% de los partidos</div></div>
+      <div class="tile"><div class="v vd num">${TOT.d}</div><div class="l">Empates</div></div>
+      <div class="tile"><div class="v vl num">${TOT.l}</div><div class="l">Derrotas</div></div>
+      <div class="tile"><div class="v vw num">${TOT.gf}</div><div class="l">Goles a favor</div><div class="s">2,7 por partido</div></div>
+      <div class="tile"><div class="v vl num">${TOT.gc}</div><div class="l">Goles en contra</div><div class="s">1,4 por partido</div></div>
       <div class="tile"><div class="v num">+${TOT.gf - TOT.gc}</div><div class="l">Diferencia</div></div>
     </div></section>
 
@@ -822,7 +844,7 @@ function chartSVG() {
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ganados, empatados y perdidos por torneo">${TORS.map((t, i) => {
     const o = tot(t.m), x = pad + i*bw + bw*.18, w = bw*.64, base = H - 40;
     let y = base; const segs = [[o.w, 'var(--win)'], [o.d, 'var(--draw)'], [o.l, 'var(--loss)']].map(([v, c]) => { if (!v) return ''; const h = v*s; y -= h; return `<rect x="${x}" y="${y + 1}" width="${w}" height="${h - 2}" rx="3" fill="${c}"/>`; }).join('');
-    const star = t.pos === 'Campeón' ? `<polygon fill="#E7B547" points="${starPts(x + w/2, y - 22, 7)}"/>` : '';
+    const star = t.pos === 'Campeón' ? `<polygon fill="#C9D2E3" points="${starPts(x + w/2, y - 22, 7)}"/>` : '';
     return `<g class="bar" data-year="${t.y}" tabindex="0"><title>${t.k}: ${o.w}G ${o.d}E ${o.l}P · ${t.pos}</title>${segs}${star}
       <text x="${x + w/2}" y="${base - o.w*s/2 + 5}" text-anchor="middle" style="fill:#fff;font-size:14px">${o.w}</text>
       <text x="${x + w/2}" y="${y - 6}" text-anchor="middle" style="font-size:12px;fill:var(--muted)">${o.pj}</text>
@@ -876,25 +898,25 @@ function viewYear(y) {
       ${tpurl('Y' + y) ? `<figure class="yfeat"><img src="${tpurl('Y' + y)}" alt="Jugador de Pro-Plan FC con la camiseta negra, ${y}"><figcaption>Pro-Plan FC · ${y}<span>Gentileza SportCenter</span></figcaption></figure>` : ''}</div>
     <div class="tiles" style="margin-top:20px">
       <div class="tile"><div class="v num">${o.pj}</div><div class="l">Partidos</div></div>
-      <div class="tile"><div class="v w num">${o.w}</div><div class="l">Ganados</div></div>
-      <div class="tile"><div class="v d num">${o.d}</div><div class="l">Empatados</div></div>
-      <div class="tile"><div class="v l num">${o.l}</div><div class="l">Perdidos</div></div>
+      <div class="tile"><div class="v vw num">${o.w}</div><div class="l">Ganados</div></div>
+      <div class="tile"><div class="v vd num">${o.d}</div><div class="l">Empatados</div></div>
+      <div class="tile"><div class="v vl num">${o.l}</div><div class="l">Perdidos</div></div>
       <div class="tile"><div class="v num">${o.gf}<span style="color:var(--muted);font-size:28px"> – ${o.gc}</span></div><div class="l">Goles</div></div>
       <div class="tile"><div class="v num">${pct(o.w, o.d, o.pj)}%</div><div class="l">Efectividad</div>${y === 2026 ? '<div class="s">En curso</div>' : ''}</div>
     </div>
-    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#E7B547' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
+    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#C9D2E3' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
 
     ${ts.map(t => { const ot = tot(t.m);
       return `<div class="tour" id="t-${t.s.replace(' ', '')}">${coverHTML(t.s, t.k)}<div class="tour-h"><div><h3>${t.k}</h3><p>${esc(t.note)}</p>
         <div class="rec-line num">${ot.pj} PJ · ${ot.w}G ${ot.d}E ${ot.l}P · ${ot.gf}-${ot.gc} · ${pct(ot.w, ot.d, ot.pj)}% de efectividad</div></div>${badge(t.pos)}</div>
-        <div class="form" aria-label="Resultados en orden">${t.m.map((m, j) => `<button class="${res(m)}" data-jump="${t.s}-${j}" title="${fmtD(m.d)} · ${esc(m.r)} ${m.gf}-${m.gc}">${RES_TXT[res(m)]}</button>`).join('')}</div>
+        <div class="form" aria-label="Resultados en orden">${t.m.map((m, j) => `<button class="rs-${res(m)}" data-jump="${t.s}-${j}" title="${fmtD(m.d)} · ${esc(m.r)} ${m.gf}-${m.gc}">${RES_TXT[res(m)]}</button>`).join('')}</div>
         <div class="matches">${t.m.map((m, j) => matchRow({...m, t}).replace(/^<div class="(mt[^"]*)">/, `<div class="$1" id="m-${t.s.replace(' ', '')}-${j}">`)).join('')}</div>
         <p class="note" style="margin:10px 0 0"><a href="${t.url}/team/122" target="_blank" rel="noopener">Ficha del equipo en la liga ↗</a></p></div>`; }).join('')}
 
     <section style="padding-block:34px"><div class="cols">
       <div><div class="sec-head"><span class="eyebrow">Goleadores ${y}</span></div><div class="mini">${scorers.slice(0, 10).map(p => `<div class="it" data-player="${esc(p.n)}" style="cursor:pointer">${photo(p.n, 32)}<b>${esc(p.n)}</b><span class="n num">${p.g}</span></div>`).join('')}</div></div>
       <div><div class="sec-head"><span class="eyebrow">Momentos ${y}</span></div><div class="mini">
-        <div class="it"><span class="score W" style="min-width:58px">${best.gf}-${best.gc}</span><b>Mejor resultado: ${esc(best.r)}<br><span class="note">${fmtD(best.d)} · ${best.t.s}</span></b></div>
+        <div class="it"><span class="score rs-W" style="min-width:58px">${best.gf}-${best.gc}</span><b>Mejor resultado: ${esc(best.r)}<br><span class="note">${fmtD(best.d)} · ${best.t.s}</span></b></div>
         ${hts.map(h => `<div class="it" data-player="${esc(h.n)}" style="cursor:pointer">${photo(h.n, 32)}<b>${HTL(h.g)} de ${esc(h.n)}<br><span class="note">${h.g} goles a ${esc(h.m.r)} · ${h.m.gf}-${h.m.gc} · ${fmtD(h.m.d)}</span></b></div>`).join('')}
       </div></div>
       <div><div class="sec-head"><span class="eyebrow">Tarjetas ${y}</span></div><div class="mini">${cards.slice(0, 8).map(p => `<div class="it" data-player="${esc(p.n)}" style="cursor:pointer">${photo(p.n, 32)}<b>${esc(p.n)}</b><span>${'<i class="cd y"></i> '.repeat(0)}${p.a ? `<i class="cd y"></i> ${p.a}` : ''} ${p.r ? `&nbsp;<i class="cd r"></i> ${p.r}` : ''}</span></div>`).join('')}</div></div>
@@ -921,7 +943,7 @@ function viewCampeonatos() {
 function fotosPartidos(ms = TORS.flatMap(t => t.m.map(m => ({...m, t}))).filter(m => m.fotos), title = 'Clausura 2026 · partido a partido', link = ['#a2026', 'Ver campeonato ›']) {
   if (!ms.length) return '';
   return `<div class="vgroup"><div class="fg-h"><div><h3>${esc(title)}</h3><p class="note" style="margin:4px 0 12px">${ms.reduce((a, m) => a + m.fotos.length, 0)} fotos de ${ms.length} partidos. Tocá una para verla en grande.</p></div>${link ? `<a class="fg-link" href="${link[0]}">${link[1]}</a>` : ''}</div>
-    ${ms.map(m => `<div class="pm"><div class="pm-h"><span class="score ${res(m)}">${m.gf}-${m.gc}</span><div><b>${esc(m.r)}</b><span class="note">${esc(m.f || '')} · ${fmtD(m.d)}${m.sc.length ? ' · Goles: ' + m.sc.map(([n, g]) => esc(n.split(' ').slice(-1)[0]) + (g > 1 ? ` (${g})` : '')).join(', ') : ''}</span></div></div>${thumbs(m)}</div>`).join('')}</div>`;
+    ${ms.map(m => `<div class="pm"><div class="pm-h"><span class="score rs-${res(m)}">${m.gf}-${m.gc}</span><div><b>${esc(m.r)}</b><span class="note">${esc(m.f || '')} · ${fmtD(m.d)}${m.sc.length ? ' · Goles: ' + m.sc.map(([n, g]) => esc(n.split(' ').slice(-1)[0]) + (g > 1 ? ` (${g})` : '')).join(', ') : ''}</span></div></div>${thumbs(m)}</div>`).join('')}</div>`;
 }
 function viewFotos() {
   const groups = [...YEARS].reverse().map(y => ({photos: TORS.filter(t => t.y === y && tpurl(t.s)).map(t => [t.s, 'Plantel · ' + t.k]), t: String(y), d: TORS.filter(t => t.y === y).map(t => `${t.k.split(' ')[0]}: ${t.pos}`).join(' · ') + (ANUAL[y] ? ` · "Uruguayo": ${ANUAL[y].pos}` : ''), link: '#a' + y}));
@@ -992,9 +1014,9 @@ function viewOld() {
     ${tpurl('OLD') ? `<figure class="old-team"><img src="${tpurl('OLD')}" alt="Plantel de Old Proplans"><figcaption>Foto temporal · Gentileza: Punta Sport TV</figcaption></figure>` : `<div class="old-team empty">${ICON.foto}<span>Foto del plantel · Próximamente</span></div>`}
     <div class="tiles" style="margin-top:22px">
       <div class="tile"><div class="v num">${o.pj}</div><div class="l">Partidos</div></div>
-      <div class="tile"><div class="v w num">${o.w}</div><div class="l">Ganados</div></div>
-      <div class="tile"><div class="v d num">${o.d}</div><div class="l">Empatados</div></div>
-      <div class="tile"><div class="v l num">${o.l}</div><div class="l">Perdidos</div></div>
+      <div class="tile"><div class="v vw num">${o.w}</div><div class="l">Ganados</div></div>
+      <div class="tile"><div class="v vd num">${o.d}</div><div class="l">Empatados</div></div>
+      <div class="tile"><div class="v vl num">${o.l}</div><div class="l">Perdidos</div></div>
       <div class="tile"><div class="v num">${o.gf}<span style="color:var(--muted);font-size:28px"> – ${o.gc}</span></div><div class="l">Goles</div></div>
       <div class="tile"><div class="v num">${cards.reduce((a, p) => a + p.a, 0)}</div><div class="l">Amarillas</div><div class="s">${cards.reduce((a, p) => a + p.r, 0) ? cards.reduce((a, p) => a + p.r, 0) + ' rojas' : 'Ninguna roja'}</div></div>
       <div class="tile"><div class="v num">10º</div><div class="l">Posición</div><div class="s">De 11 equipos</div></div></div>
@@ -1033,8 +1055,8 @@ function openPlayer(n) {
   const d = $('#dlg');
   d.innerHTML = `<button class="x" aria-label="Cerrar" data-close>×</button><div class="dlg">
     <div class="dlg-h">${photo(n, 96)}<div><span class="eyebrow">${n === 'Mauricio Hermoso' ? 'DT · ' : ''}${etapa(n)}</span><h3>${esc(n)}</h3><span class="note">${p.tor} torneo${p.tor > 1 ? 's' : ''}${apps.length ? ` · primera convocatoria: ${fmtD(apps[0].d)}` : ''}</span></div></div>
-    <div class="tiles"><div class="tile"><div class="v num">${p.pj}</div><div class="l">Partidos</div></div><div class="tile"><div class="v w num">${p.g}</div><div class="l">Goles</div></div>
-      <div class="tile"><div class="v d num">${p.a}</div><div class="l">Amarillas</div></div><div class="tile"><div class="v l num">${p.r}</div><div class="l">Rojas</div></div></div>
+    <div class="tiles"><div class="tile"><div class="v num">${p.pj}</div><div class="l">Partidos</div></div><div class="tile"><div class="v vw num">${p.g}</div><div class="l">Goles</div></div>
+      <div class="tile"><div class="v vd num">${p.a}</div><div class="l">Amarillas</div></div><div class="tile"><div class="v vl num">${p.r}</div><div class="l">Rojas</div></div></div>
     ${hts.length ? `<div><span class="eyebrow">${hts.some(h => h.g >= 4) ? 'Hat tricks y póker' : 'Hat tricks'}</span><div class="mini" style="margin-top:6px">${hts.map(h => `<div class="it"><span class="balls">${'●'.repeat(h.g)}</span><b>${h.g >= 4 ? '<span class="tag" style="margin:0 6px 0 0">Póker</span>' : ''}${h.g} goles a ${esc(h.m.r)} <span class="note">· ${h.m.gf}-${h.m.gc} · ${fmtD(h.m.d)}</span></b></div>`).join('')}</div></div>` : ''}
     <div class="tbl"><table class="ptable"><thead><tr><th>Torneo</th><th>PJ</th><th>Goles</th><th>Am</th><th>Ro</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
   d.showModal();
