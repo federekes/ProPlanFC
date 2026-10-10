@@ -751,6 +751,24 @@ const VIDEOS = [
   ,{id: 'cl24-f9-tijera', tour: 'Cl 24', rival: 'Tijera FC', d: '28/10/2024', ord: 2, title: "Tijera 0-1 Pro-Plan: gol de Espiga", sub: 'Clausura 2024 · 9.ª fecha',
    src: 'videos/cl24-f9-tijera.mp4', poster: 'videos/cl24-f9-tijera.jpg', dur: '3:09',
    chapters: [[0, "El gol de Ismael Espiga"], [20, "El resto del partido"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'ap24-f3-euca', tour: 'Ap 24', rival: 'Los Euca FC', d: '06/05/2024', ord: 1, title: "Pro-Plan 1-1 Los Euca", sub: 'Apertura 2024 · 3.ª fecha',
+   src: 'videos/ap24-f3-euca.mp4', poster: 'videos/ap24-f3-euca.jpg', dur: '1:28',
+   chapters: [[0, "El partido"], [21, "Habla un jugador de Los Euca"], [45, "La palabra de Pro-Plan"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl24-semi-chacarita-previa', tour: 'Cl 24', rival: 'Chacarita FC', d: '02/12/2024', ord: 1, title: "Previa de la semifinal anual: Pro-Plan vs Chacarita", sub: 'Semifinal Anual 2024',
+   src: 'videos/cl24-semi-chacarita-previa.mp4', poster: 'videos/cl24-semi-chacarita-previa.jpg', dur: '3:02',
+   chapters: [[0, "La previa"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl24-semi-chacarita', tour: 'Cl 24', rival: 'Chacarita FC', d: '02/12/2024', ord: 2, title: "Semifinal anual: Pro-Plan 3-1 Chacarita", sub: 'Semifinal Anual 2024',
+   src: 'videos/cl24-semi-chacarita.mp4', poster: 'videos/cl24-semi-chacarita.jpg', dur: '4:04',
+   chapters: [[0, "Arranca el partido"], [5, "1-0"], [52, "2-0"], [66, "3-0"], [185, "Descuenta Chacarita"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'cl24-semi-campeones', tour: 'Cl 24', rival: 'Chacarita FC', d: '02/12/2024', ord: 3, title: "¡Pro-Plan campeón 2024! Festejos y entrevistas", sub: 'Semifinal Anual 2024 · ¡Campeones!',
+   src: 'videos/cl24-semi-campeones.mp4', poster: 'videos/cl24-semi-campeones.jpg', dur: '4:38',
+   chapters: [[0, "Habla Mariano Bogliacino"], [32, "La copa"], [80, "Habla Fernando Pintos"], [140, "Habla Juan Caubarrere"], [224, "Habla Matías Finocchietti"], [236, "Habla Gabriel Arruti"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'old-f5-aura', tour: 'OLD', rival: 'Aura FC', d: '28/09/2026', ord: 1, title: "Aura 3-2 Old Proplans", sub: 'Old Proplans · Clausura 2026 · 5.ª fecha',
+   src: 'videos/old-f5-aura.mp4', poster: 'videos/old-f5-aura.jpg', dur: '7:59',
+   chapters: [[0, "El sorteo"], [44, "1-0 Aura"], [92, "2-0"], [258, "3-0"], [346, "Descuentan los Old"], [384, "3-2"], [420, "Habla Luis Alfonso, DT de Aura"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'old-f6-pichanga', tour: 'OLD', rival: 'Pichanga FC', d: '05/10/2026', ord: 1, title: "Pichanga 4-1 Old Proplans", sub: 'Old Proplans · Clausura 2026 · 6.ª fecha',
+   src: 'videos/old-f6-pichanga.mp4', poster: 'videos/old-f6-pichanga.jpg', dur: '2:35',
+   chapters: [[0, "Resumen"], [17, "Hablan los Old"]], credit: 'Gentileza: Punta Sport TV'}
 ];
 VIDEOS.sort((a, b) => a.d.split('/').reverse().join('').localeCompare(b.d.split('/').reverse().join('')) || (a.ord || 0) - (b.ord || 0));
 const VREG = [];
@@ -1122,6 +1140,7 @@ function viewOld() {
     ${bdaySection(O.cumple, 'Old Proplans')}
     <section style="padding-block:10px 34px"><div class="sec-head"><span class="eyebrow">Plantel</span><h3>${O.players.length} jugadores</h3></div>
       <div class="squad">${[...O.players].sort((a, b) => b.pj - a.pj || a.n.localeCompare(b.n)).map(p => `<div class="pc"${PL[p.n] ? ` data-player="${esc(p.n)}" role="button" tabindex="0"` : ' style="cursor:default"'}>${ph(p.n, 38)}<span class="t"><b>${esc(p.n)}</b><span class="num">${p.dt ? 'Presidente de Pro-Plan' : `${p.pj} PJ${p.g ? ` · ${p.g} goles` : ''}`}</span></span></div>`).join('')}</div></section>
+    ${(() => { const ov = VIDEOS.filter(v => v.tour === 'OLD').sort((x, y) => x.d.split('/').reverse().join('').localeCompare(y.d.split('/').reverse().join(''))); return ov.length ? `<section style="padding-block:10px 34px"><div class="sec-head"><span class="eyebrow">Punta Sport TV</span><h3>Videos de los Old</h3></div><div class="vgrid">${ov.map(v => videoCard(v, 0)).join('')}</div></section>` : ''; })()}
     <section id="old-fotos" style="padding-block:10px 34px;scroll-margin-top:80px"><div class="sec-head"><span class="eyebrow">Galería</span><h3>Fotos de los Old</h3></div>${fotosPartidos(ms.filter(m => m.fotos), 'Partido a partido', null)}</section></section></div>`;
 }
 function viewPlantel() {
