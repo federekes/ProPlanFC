@@ -25,7 +25,7 @@
   --crest-ink:#9DB6FF;  /* azul para texto sobre fondo oscuro */
   --gold:#FF6A13;       /* acento plateado */
   --draw:#7D89A3;       /* empate */
-  --loss:#D9524A;       /* derrota / roja */
+  --loss:#3B4358;       /* derrota (sin rojo) */
   --win:#3E6BF0;        /* victoria */
   --f-display:"Big Shoulders Display","Barlow Condensed","Arial Narrow",sans-serif;
   --f-body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -97,7 +97,7 @@ section+section{border-top:1px solid var(--line)}
 .tile .v{font-family:var(--f-display);font-weight:900;font-size:44px;line-height:1}
 .tile .l{font-family:var(--f-label);font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-top:4px}
 .tile .s{color:var(--muted);font-size:13px}
-.v.vw{color:var(--crest-ink)}.v.vd{color:#C9D2E3}.v.vl{color:#E58C86}
+.v.vw{color:var(--crest-ink)}.v.vd{color:#C9D2E3}.v.vl{color:#8A92A3}
 
 /* palmarés */
 .palm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
@@ -124,7 +124,7 @@ section+section{border-top:1px solid var(--line)}
 .rec b{display:block;font-family:var(--f-label);font-weight:700;font-size:18px;letter-spacing:.02em}
 .rec p{margin:2px 0 0;color:var(--ink2);font-size:14px}
 .rec.poker .big .ph{margin:0 auto}
-.rec.dark .big{color:#FF8B83}.rec .big.blue{color:var(--crest-ink)}.rec .big.gold{color:var(--gold)}
+.rec.dark .big{color:#C9D2E3}.rec .big.blue{color:var(--crest-ink)}.rec .big.gold{color:var(--gold)}
 
 /* tabs */
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
@@ -190,7 +190,7 @@ section+section{border-top:1px solid var(--line)}
 .ficha .kv div{display:flex;gap:8px}.ficha .kv span{color:var(--muted);min-width:64px}
 .balls{color:var(--gold);font-size:12px;letter-spacing:1px}
 .cd{display:inline-block;width:10px;height:14px;border-radius:2px;vertical-align:-2px}
-.cd.y{background:#E3B93B}.cd.r{background:var(--loss)}
+.cd.y{background:#E3B93B}.cd.r{background:#FF6A13}
 .lu{display:flex;flex-wrap:wrap;gap:6px}
 .lu span{display:flex;align-items:center;gap:6px;background:var(--pitch);border:1px solid var(--line);border-radius:999px;padding:2px 10px 2px 2px;font-size:13.5px;cursor:pointer}
 
