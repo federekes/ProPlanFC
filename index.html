@@ -178,6 +178,7 @@ section+section{border-top:1px solid var(--line)}
 .mt .dt small{display:block;font-size:12px;color:var(--muted);opacity:.85}
 .mt .rival{min-width:0}
 .mt .rival b{font-weight:600}
+.vs{display:inline-block;font-family:var(--f-display);font-style:normal;font-weight:900;font-size:.82em;line-height:1;letter-spacing:-.01em;color:#fff;background:linear-gradient(180deg,#FF7A1F,#E2420B);padding:3px 6px 2px 5px;margin-right:8px;transform:skewX(-14deg);border-radius:2px;box-shadow:2px 2px 0 #7A1E04;vertical-align:.08em;text-shadow:1px 1px 0 rgba(0,0,0,.35)}
 .tag{display:inline-block;font-family:var(--f-label);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:1px 7px;border-radius:4px;background:var(--pitch2);color:var(--gold);margin-left:6px;vertical-align:1px}
 .score{justify-self:end;font-family:var(--f-display);font-weight:900;font-size:22px;padding:2px 10px;border-radius:6px;color:#fff;min-width:62px;text-align:center}
 .mt.open .chev{transform:rotate(90deg)}
@@ -533,7 +534,7 @@ function matchRow(m, withTour = false) {
   const fb = m.fotos && m.fotos.length ? `<button class="mt-fotos" data-lb="g${GALS.push(m) - 1}" data-i="0" aria-label="Ver las ${m.fotos.length} fotos del partido contra ${esc(m.r)}">${ICON.foto}<span>Fotos</span></button>` : '';
   return `<div class="mt${fb ? ' hasf' : ''}"><button aria-expanded="false">
       <span class="dt">${fmtD(m.d)}<small>${withTour ? esc(m.t.s) : esc(m.f || '')}</small></span>
-      <span class="rival"><b>${esc(m.r)}</b>${ph}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
+      <span class="rival"><i class="vs">VS</i><b>${esc(m.r)}</b>${ph}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
       <span class="score rs-${r}">${m.gf}-${m.gc}</span>
       <span class="chev" aria-hidden="true">›</span></button>
     ${fb}<div class="ficha" hidden data-mi="${mi}"></div></div>`;
@@ -954,7 +955,7 @@ function viewCampeonatos() {
 function fotosPartidos(ms = TORS.flatMap(t => t.m.map(m => ({...m, t}))).filter(m => m.fotos), title = 'Clausura 2026 · partido a partido', link = ['#a2026', 'Ver campeonato ›']) {
   if (!ms.length) return '';
   return `<div class="vgroup"><div class="fg-h"><div><h3>${esc(title)}</h3><p class="note" style="margin:4px 0 12px">${ms.reduce((a, m) => a + m.fotos.length, 0)} fotos de ${ms.length} partidos. Tocá una para verla en grande.</p></div>${link ? `<a class="fg-link" href="${link[0]}">${link[1]}</a>` : ''}</div>
-    ${ms.map(m => `<div class="pm"><div class="pm-h"><span class="score rs-${res(m)}">${m.gf}-${m.gc}</span><div><b>${esc(m.r)}</b><span class="note">${esc(m.f || '')} · ${fmtD(m.d)}${m.sc.length ? ' · Goles: ' + m.sc.map(([n, g]) => esc(n.split(' ').slice(-1)[0]) + (g > 1 ? ` (${g})` : '')).join(', ') : ''}</span></div></div>${thumbs(m)}</div>`).join('')}</div>`;
+    ${ms.map(m => `<div class="pm"><div class="pm-h"><span class="score rs-${res(m)}">${m.gf}-${m.gc}</span><div><b><i class="vs">VS</i>${esc(m.r)}</b><span class="note">${esc(m.f || '')} · ${fmtD(m.d)}${m.sc.length ? ' · Goles: ' + m.sc.map(([n, g]) => esc(n.split(' ').slice(-1)[0]) + (g > 1 ? ` (${g})` : '')).join(', ') : ''}</span></div></div>${thumbs(m)}</div>`).join('')}</div>`;
 }
 function viewFotos() {
   const groups = [...YEARS].reverse().map(y => ({photos: TORS.filter(t => t.y === y && tpurl(t.s)).map(t => [t.s, 'Plantel · ' + t.k]), t: String(y), d: TORS.filter(t => t.y === y).map(t => `${t.k.split(' ')[0]}: ${t.pos}`).join(' · ') + (ANUAL[y] ? ` · "Uruguayo": ${ANUAL[y].pos}` : ''), link: '#a' + y}));
