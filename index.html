@@ -23,7 +23,7 @@
   --muted:#7E8AA6;      /* etiquetas */
   --crest:#2B57E0;      /* azul del escudo, acento */
   --crest-ink:#9DB6FF;  /* azul para texto sobre fondo oscuro */
-  --gold:#C9D2E3;       /* acento plateado */
+  --gold:#FF6A13;       /* acento plateado */
   --draw:#7D89A3;       /* empate */
   --loss:#D9524A;       /* derrota / roja */
   --win:#3E6BF0;        /* victoria */
@@ -55,6 +55,10 @@ button{font:inherit;color:inherit}
 .nav a{flex:none;text-decoration:none;color:var(--ink2);font-family:var(--f-label);font-weight:600;font-size:15px;letter-spacing:.04em;text-transform:uppercase;padding:7px 10px;border-radius:6px}
 .nav a:hover{color:var(--ink);background:var(--pitch)}
 .nav a[aria-current="page"]{color:var(--night);background:var(--gold)}
+.nav a.nav-old{display:inline-flex;align-items:center;gap:6px;margin-left:6px;font-weight:800;color:#E9C9A4;border:1.5px solid #B98352;background:rgba(74,46,31,.45);padding:5.5px 10px}
+.nav a.nav-old svg{width:11px;height:13px;flex:none}
+.nav a.nav-old:hover{background:#4A2E1F;color:#F4DFC4}
+.nav a.nav-old[aria-current="page"]{background:#7A4A2A;color:#FFF3E3;border-color:#C9955F}
 .years{display:flex;gap:6px;flex-wrap:wrap}
 .yr{font-family:var(--f-display);font-weight:800;font-size:20px;text-decoration:none;color:var(--ink);background:var(--pitch);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
 .yr:hover{border-color:var(--crest)}
@@ -90,7 +94,7 @@ section+section{border-top:1px solid var(--line)}
 .tile .v{font-family:var(--f-display);font-weight:900;font-size:44px;line-height:1}
 .tile .l{font-family:var(--f-label);font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-top:4px}
 .tile .s{color:var(--muted);font-size:13px}
-.v.vw{color:var(--crest-ink)}.v.vd{color:var(--gold)}.v.vl{color:#E58C86}
+.v.vw{color:var(--crest-ink)}.v.vd{color:#C9D2E3}.v.vl{color:#E58C86}
 
 /* palmarés */
 .palm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
@@ -777,7 +781,7 @@ function viewInicio() {
   const faces = Object.keys(DATA.photos).sort((a, b) => PL[b].pj - PL[a].pj);
   const titles = [['Clausura 2024', 'Campeón invicto', 2024], ['"Uruguayo" 2023', 'Campeón del Torneo Anual', 2023], ['"Uruguayo" 2024', 'Bicampeón del Torneo Anual', 2024]];
   const vices = [['Clausura 2020', 2020], ['Clausura 2022', 2022], ['Apertura 2023', 2023], ['Clausura 2023', 2023], ['Apertura 2024', 2024], ['"Uruguayo" 2025', 2025]];
-  const cup = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#C9D2E3" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg>`;
+  const cup = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#FF6A13" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg>`;
   const medal = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#9DB6FF" stroke-width="1.6"><circle cx="12" cy="15" r="5"/><path d="M8 3l4 7 4-7"/></svg>`;
   const sc = [...DATA.players].sort((a, b) => b.g - a.g || a.pj - b.pj);
   return `
@@ -844,7 +848,7 @@ function chartSVG() {
   return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ganados, empatados y perdidos por torneo">${TORS.map((t, i) => {
     const o = tot(t.m), x = pad + i*bw + bw*.18, w = bw*.64, base = H - 40;
     let y = base; const segs = [[o.w, 'var(--win)'], [o.d, 'var(--draw)'], [o.l, 'var(--loss)']].map(([v, c]) => { if (!v) return ''; const h = v*s; y -= h; return `<rect x="${x}" y="${y + 1}" width="${w}" height="${h - 2}" rx="3" fill="${c}"/>`; }).join('');
-    const star = t.pos === 'Campeón' ? `<polygon fill="#C9D2E3" points="${starPts(x + w/2, y - 22, 7)}"/>` : '';
+    const star = t.pos === 'Campeón' ? `<polygon fill="#FF6A13" points="${starPts(x + w/2, y - 22, 7)}"/>` : '';
     return `<g class="bar" data-year="${t.y}" tabindex="0"><title>${t.k}: ${o.w}G ${o.d}E ${o.l}P · ${t.pos}</title>${segs}${star}
       <text x="${x + w/2}" y="${base - o.w*s/2 + 5}" text-anchor="middle" style="fill:#fff;font-size:14px">${o.w}</text>
       <text x="${x + w/2}" y="${y - 6}" text-anchor="middle" style="font-size:12px;fill:var(--muted)">${o.pj}</text>
@@ -904,7 +908,7 @@ function viewYear(y) {
       <div class="tile"><div class="v num">${o.gf}<span style="color:var(--muted);font-size:28px"> – ${o.gc}</span></div><div class="l">Goles</div></div>
       <div class="tile"><div class="v num">${pct(o.w, o.d, o.pj)}%</div><div class="l">Efectividad</div>${y === 2026 ? '<div class="s">En curso</div>' : ''}</div>
     </div>
-    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#C9D2E3' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
+    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#FF6A13' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
 
     ${ts.map(t => { const ot = tot(t.m);
       return `<div class="tour" id="t-${t.s.replace(' ', '')}">${coverHTML(t.s, t.k)}<div class="tour-h"><div><h3>${t.k}</h3><p>${esc(t.note)}</p>
@@ -1080,7 +1084,7 @@ function route() {
   let h = (location.hash || '#inicio').slice(1), deepV = null;
   if (h.startsWith('v-')) { deepV = VIDEOS.find(v => v.id === h.slice(2)); if (deepV) { const t = TORS.find(x => x.s === deepV.tour); VYEAR = t ? t.y : 'entr'; } h = 'videos'; }
   const key = VIEWS.some(v => v[0] === h) ? h : 'inicio';
-  $('#nav').innerHTML = NAV.map(([k, l]) => `<a href="#${k}"${k === PARENT(key) ? ' aria-current="page"' : ''}>${l === 'Old Proplans' ? 'Old<span class="xs"> Proplans</span>' : l}</a>`).join('');
+  $('#nav').innerHTML = NAV.map(([k, l]) => `<a href="#${k}"${k === 'old' ? ' class="nav-old"' : ''}${k === PARENT(key) ? ' aria-current="page"' : ''}>${l === 'Old Proplans' ? crestSVG({old: true, detail: false}) + 'Old<span class="xs"> Proplans</span>' : l}</a>`).join('');
   fitNav();
   const app = $('#app'); NOWV = null; backBtn(); MREG.length = 0; GALS.length = 0; VREG.length = 0;
   if (key === 'inicio') { app.innerHTML = viewInicio(); renderRank(); }
