@@ -769,6 +769,9 @@ const VIDEOS = [
   ,{id: 'old-f6-pichanga', tour: 'OLD', rival: 'Pichanga FC', d: '05/10/2026', ord: 1, title: "Pichanga 4-1 Old Proplans", sub: 'Old Proplans · Clausura 2026 · 6.ª fecha',
    src: 'videos/old-f6-pichanga.mp4', poster: 'videos/old-f6-pichanga.jpg', dur: '2:35',
    chapters: [[0, "Resumen"], [17, "Hablan los Old"]], credit: 'Gentileza: Punta Sport TV'}
+  ,{id: 'old-ap26-union', tour: 'OLD', rival: 'Unión FC · Apertura +38', d: '', ord: 0, title: "El debut: Old Proplans vs Unión", sub: 'Old Proplans · Apertura 2026 · F11 +38',
+   src: 'videos/old-ap26-union.mp4', poster: 'videos/old-ap26-union.jpg', dur: '6:03',
+   chapters: [[0, "El sorteo y el partido"], [216, "Habla Federico Moratorio"], [282, "Habla Andrés Rivero (Unión)"]], credit: 'Gentileza: Punta Sport TV'}
 ];
 VIDEOS.sort((a, b) => a.d.split('/').reverse().join('').localeCompare(b.d.split('/').reverse().join('')) || (a.ord || 0) - (b.ord || 0));
 const VREG = [];
@@ -1119,7 +1122,7 @@ function viewOld() {
   const sc = O.players.filter(p => p.g > 0).sort((a, b) => b.g - a.g);
   const cards = O.players.filter(p => p.a + p.r > 0).sort((a, b) => (b.a + b.r * 2) - (a.a + a.r * 2));
   return `<div class="old-bg"><section class="wrap old"><div class="old-head">${crestSVG({old: true})}<div><span class="eyebrow" style="color:#C9955F">Old Proplans 38</span><h2>La vieja guardia</h2>
-      <p class="lead">Los nuevos viejos del Proplán. Haciendo sus primeras armas y un plantel que tiene la meta de ganar la copa de honor. El equipo debutó en el Clausura 2026 de Fútbol 11 +30. En el plantel hay 13 ex Pro-Plan, una Parka de golero, 04 fantásticos y más noche que la luna.</p>
+      <p class="lead">Los nuevos viejos del Proplán. Haciendo sus primeras armas y un plantel que tiene la meta de ganar la copa de honor. El equipo debutó en el Apertura 2026 de Fútbol 11 +38. Cuando ese torneo se suspendió, la dirigencia hizo las gestiones para anotarlo en una categoría más difícil, la +30 del Clausura 2026, por el simple hecho de jugar a la pelota. De ahí a la posición que ocupan en la tabla. Y por eso son Old Proplans. En el plantel hay 13 ex Pro-Plan, una Parka de golero, 04 fantásticos y más noche que la luna.</p>
       <a class="fotos-btn" href="#old" data-goto="old-fotos">${ICON.foto}<span>Fotos</span><small class="num">${ms.reduce((a, m) => a + (m.fotos ? m.fotos.length : 0), 0)}</small></a></div></div>
     ${tpurl('OLD') ? `<figure class="old-team"><img src="${tpurl('OLD')}" alt="Plantel de Old Proplans"><figcaption>Foto temporal · Gentileza: Punta Sport TV</figcaption></figure>` : `<div class="old-team empty">${ICON.foto}<span>Foto del plantel · Próximamente</span></div>`}
     <div class="tiles" style="margin-top:22px">
