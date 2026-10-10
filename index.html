@@ -959,7 +959,7 @@ function fotosPartidos(ms = TORS.flatMap(t => t.m.map(m => ({...m, t}))).filter(
 function viewFotos() {
   const groups = [...YEARS].reverse().map(y => ({photos: TORS.filter(t => t.y === y && tpurl(t.s)).map(t => [t.s, 'Plantel · ' + t.k]), t: String(y), d: TORS.filter(t => t.y === y).map(t => `${t.k.split(' ')[0]}: ${t.pos}`).join(' · ') + (ANUAL[y] ? ` · "Uruguayo": ${ANUAL[y].pos}` : ''), link: '#a' + y}));
   groups.push({t: 'Tercer tiempo', d: 'Asados, Carlitos y todo lo que pasa después del partido', link: null});
-  return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Fotos</span><h2>La galería</h2><p class="lead">Las fotos del club ordenadas por año. Las de cada partido también aparecen en su ficha, dentro de Campeonatos.</p></div>
+  return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Fotos</span><h2>Las fotos del partido</h2><p class="lead">Las fotos del club ordenadas por año. Las de cada partido también aparecen en su ficha, dentro de Campeonatos.</p></div>
     ${fotosPartidos()}
     ${groups.map(g => `<div class="vgroup"><div class="fg-h"><div><h3>${esc(g.t)}</h3><p class="note" style="margin:4px 0 12px">${esc(g.d)}</p></div>${g.link ? `<a class="fg-link" href="${g.link}">Ver ${g.t === 'Old Proplans' ? 'sección' : 'campeonatos'} ›</a>` : ''}</div>
       <div class="pgrid">${(g.photos || []).map(([k, l]) => `<figure class="pf"><img src="${tpurl(k)}" alt="${esc(l)}" loading="lazy"><figcaption>${esc(l)}</figcaption></figure>`).join('')}${[1, 2, 3, 4].slice((g.photos || []).length).map(() => `<div class="slot">${ICON.foto}<span>Próximamente</span></div>`).join('')}</div></div>`).join('')}</section>`;
