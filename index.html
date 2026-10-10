@@ -531,7 +531,7 @@ const MREG = [];
 function matchRow(m, withTour = false) {
   const r = res(m), mi = MREG.push(m) - 1;
   const ph = m.ph && m.ph !== 'Liga' ? `<span class="tag">${esc(m.ph)}</span>` : '';
-  const fb = m.fotos && m.fotos.length ? `<button class="mt-fotos" data-lb="g${GALS.push(m) - 1}" data-i="0" aria-label="Ver las ${m.fotos.length} fotos del partido contra ${esc(m.r)}">${ICON.foto}<span>Fotos</span></button>` : '';
+  const fb = m.fotos && m.fotos.length && (m.old || m.r !== 'Old Proplans') ? `<button class="mt-fotos" data-lb="g${GALS.push(m) - 1}" data-i="0" aria-label="Ver las ${m.fotos.length} fotos del partido contra ${esc(m.r)}">${ICON.foto}<span>Fotos</span></button>` : '';
   return `<div class="mt${fb ? ' hasf' : ''}"><button aria-expanded="false">
       <span class="dt">${fmtD(m.d)}<small>${withTour ? esc(m.t.s) : esc(m.f || '')}</small></span>
       <span class="rival"><i class="vs">VS</i><b>${esc(m.r)}</b>${ph}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
@@ -553,7 +553,7 @@ function ficha(m) {
     <div><h4>Tarjetas</h4><ul>${cards}</ul></div>
     <div style="grid-column:1/-1"><h4>Convocados (${m.lu.length})</h4>${lu}</div>
     ${videosFor(m).length ? `<div style="grid-column:1/-1"><h4>${videosFor(m).length > 1 ? 'Videos del partido' : 'Video del partido'}</h4><div class="vgrid">${videosFor(m).map(v => videoCard(v)).join('')}</div></div>` : ''}
-    <div style="grid-column:1/-1"><h4>Fotos del partido${m.fotos ? ` (${m.fotos.length})` : ''}</h4>${m.fotos ? thumbs(m) : `<div class="photo-row">${[1,2,3].map(() => `<div class="slot sm">${ICON.foto}<span>Próximamente</span></div>`).join('')}</div>`}</div>`;
+    <div style="grid-column:1/-1"><h4>Fotos del partido${m.fotos && (m.old || m.r !== 'Old Proplans') ? ` (${m.fotos.length})` : ''}</h4>${!m.old && m.r === 'Old Proplans' ? `<p class="note"><a href="#old" data-goto="old-fotos">Las fotos de este partido están en Old Proplans ›</a></p>` : m.fotos ? thumbs(m) : `<div class="photo-row">${[1,2,3].map(() => `<div class="slot sm">${ICON.foto}<span>Próximamente</span></div>`).join('')}</div>`}</div>`;
 }
 function rankList(rows, key, color, sub, limit) {
   const mx = Math.max(...rows.map(r => r[key])) || 1; let pos = 0, prev = null;
@@ -952,7 +952,7 @@ function viewCampeonatos() {
         <div class="season-t">${ts.map(t => `<span>${t.k.split(' ')[0]} <span class="badge ${t.pos === 'Campeón' ? 'champ' : t.pos === 'Vice' ? 'vice' : ''}">${t.pos}</span></span>`).join('')}${an ? `<span>"Uruguayo" <span class="badge ${an.pos === 'Campeón' ? 'champ' : 'vice'}">${an.pos}</span></span>` : ''}</div>
         <div class="season-r num">${o.pj} PJ · ${o.w}G ${o.d}E ${o.l}P · ${o.gf}-${o.gc}</div></div></a>`; }).join('')}</div></section>`;
 }
-function fotosPartidos(ms = TORS.flatMap(t => t.m.map(m => ({...m, t}))).filter(m => m.fotos), title = 'Clausura 2026 · partido a partido', link = ['#a2026', 'Ver campeonato ›']) {
+function fotosPartidos(ms = TORS.flatMap(t => t.m.map(m => ({...m, t}))).filter(m => m.fotos && m.r !== 'Old Proplans'), title = 'Clausura 2026 · partido a partido', link = ['#a2026', 'Ver campeonato ›']) {
   if (!ms.length) return '';
   return `<div class="vgroup"><div class="fg-h"><div><h3>${esc(title)}</h3><p class="note" style="margin:4px 0 12px">${ms.reduce((a, m) => a + m.fotos.length, 0)} fotos de ${ms.length} partidos. Tocá una para verla en grande.</p></div>${link ? `<a class="fg-link" href="${link[0]}">${link[1]}</a>` : ''}</div>
     ${ms.map(m => `<div class="pm"><div class="pm-h"><span class="score rs-${res(m)}">${m.gf}-${m.gc}</span><div><b><i class="vs">VS</i>${esc(m.r)}</b><span class="note">${esc(m.f || '')} · ${fmtD(m.d)}${m.sc.length ? ' · Goles: ' + m.sc.map(([n, g]) => esc(n.split(' ').slice(-1)[0]) + (g > 1 ? ` (${g})` : '')).join(', ') : ''}</span></div></div>${thumbs(m)}</div>`).join('')}</div>`;
