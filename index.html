@@ -516,7 +516,7 @@ const YEARS = [...new Set(TORS.map(t => t.y))];
 const ALL = TORS.flatMap(t => t.m.map(m => ({...m, t})));
 const tot = ms => { const o = {pj: ms.length, w: 0, d: 0, l: 0, gf: 0, gc: 0}; ms.forEach(m => { o[{W:'w',D:'d',L:'l'}[res(m)]]++; o.gf += m.gf; o.gc += m.gc; }); return o; };
 const TOT = tot(ALL);
-const ANUAL = {2023: {pos: 'Campeón', txt: 'Final del "Uruguayo" 2023: 3-2 a Los Gatos FC'}, 2024: {pos: 'Campeón', txt: 'Semifinal del "Uruguayo" 2024: 3-1 a Chacarita FC'}, 2025: {pos: 'Vice', txt: '2° en el "Uruguayo" 2025'}};
+const ANUAL = {2023: {pos: 'Campeón', txt: 'Final del "Uruguayo" 2023: 3-2 a Los Gatos FC'}, 2024: {pos: 'Campeón', txt: 'Semifinal del "Uruguayo" 2024: 3-1 a Chacarita FC'}, 2025: {pos: 'Vice', txt: 'Vicecampeón del "Uruguayo" 2025'}};
 // apariciones y hat tricks desde las fichas de partido
 const APP = {}, HT = [];
 ALL.forEach(m => {
@@ -815,7 +815,7 @@ const mediaSlots = label => `<div class="media">${['Fotos', 'Videos', 'Entrevist
 /* ---------- vistas ---------- */
 function viewInicio() {
   const faces = Object.keys(DATA.photos).sort((a, b) => PL[b].pj - PL[a].pj);
-  const titles = [['Clausura 2024', 'Campeón invicto', 2024], ['"Uruguayo" 2023', 'Campeón del Torneo Anual', 2023], ['"Uruguayo" 2024', 'Bicampeón del Torneo Anual', 2024]];
+  const titles = [['Clausura 2024', 'Campeón invicto', 2024], ['"Uruguayo" 2023', 'Campeón "Uruguayo"', 2023], ['"Uruguayo" 2024', 'Bicampeón "Uruguayo"', 2024]];
   const vices = [['Clausura 2020', 2020], ['Clausura 2022', 2022], ['Apertura 2023', 2023], ['Clausura 2023', 2023], ['Apertura 2024', 2024], ['"Uruguayo" 2025', 2025]];
   const cup = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#FF6A13" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg>`;
   const medal = `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="#9DB6FF" stroke-width="1.6"><circle cx="12" cy="15" r="5"/><path d="M8 3l4 7 4-7"/></svg>`;
@@ -843,9 +843,9 @@ function viewInicio() {
 
   <div class="wrap">${bdaySection(DATA.cumple, 'Pro-Plan FC')}</div>
 
-  <section class="wrap"><div class="sec-head"><span class="eyebrow">Palmarés</span><h2>3 títulos y 6 segundos puestos</h2></div>
+  <section class="wrap"><div class="sec-head"><span class="eyebrow">Palmarés</span></div>
     <div class="palm">${titles.map(([a, b, y]) => `<a class="trophy gold" href="#a${y}" style="text-decoration:none;color:inherit">${cup}<div><b>${esc(a)}</b><span>${b}</span></div></a>`).join('')}</div>
-    <div class="palm" style="margin-top:10px">${vices.map(([a, y]) => `<a class="trophy" href="#a${y}" style="text-decoration:none;color:inherit">${medal}<div><b style="font-size:17px">${esc(a)}</b><span>2° puesto</span></div></a>`).join('')}</div></section>
+    <div class="palm" style="margin-top:10px">${vices.map(([a, y]) => `<a class="trophy" href="#a${y}" style="text-decoration:none;color:inherit">${medal}<div><b style="font-size:17px">${esc(a)}</b><span>Vicecampeón</span></div></a>`).join('')}</div></section>
 
   <section class="wrap"><div class="sec-head"><span class="eyebrow">Campeonato por campeonato</span><h2>Los 14 torneos</h2><p class="lead">Tocá una barra para ir a ese año.</p></div>
     <div class="legend"><span><i style="background:var(--win)"></i>Ganados</span><span><i style="background:var(--draw)"></i>Empatados</span><span><i style="background:var(--loss)"></i>Perdidos</span></div>
@@ -944,7 +944,7 @@ function viewYear(y) {
       <div class="tile"><div class="v num">${o.gf}<span style="color:var(--muted);font-size:28px"> – ${o.gc}</span></div><div class="l">Goles</div></div>
       <div class="tile"><div class="v num">${pct(o.w, o.d, o.pj)}%</div><div class="l">Efectividad</div>${y === 2026 ? '<div class="s">En curso</div>' : ''}</div>
     </div>
-    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#FF6A13' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? '2°' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
+    ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#FF6A13' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
 
     ${ts.map(t => { const ot = tot(t.m);
       return `<div class="tour" id="t-${t.s.replace(' ', '')}">${coverHTML(t.s, t.k)}<div class="tour-h"><div><h3>${t.k}</h3><p>${esc(t.note)}</p>
@@ -1003,7 +1003,7 @@ function viewVideos() {
   let body = '';
   if (typeof VYEAR === 'number') {
     body = tours.filter(t => t.y === VYEAR).map(t => { const vs = VIDEOS.filter(v => v.tour === t.s);
-      return `<div class="vgroup"><div class="fg-h"><div><h3>${esc(t.k)}</h3><p class="note" style="margin:4px 0 12px">${vs.length} video${vs.length > 1 ? 's' : ''} · ${t.pos === 'Campeón' ? 'Campeón' : t.pos === 'Vice' ? '2°' : esc(t.pos)}</p></div><a class="fg-link" href="#a${t.y}">Ver campeonato ›</a></div>
+      return `<div class="vgroup"><div class="fg-h"><div><h3>${esc(t.k)}</h3><p class="note" style="margin:4px 0 12px">${vs.length} video${vs.length > 1 ? 's' : ''} · ${t.pos === 'Campeón' ? 'Campeón' : t.pos === 'Vice' ? 'Vicecampeón' : esc(t.pos)}</p></div><a class="fg-link" href="#a${t.y}">Ver campeonato ›</a></div>
         <div class="vgrid">${vs.map(v => videoCard(v, 0)).join('')}</div></div>`; }).join('');
   } else if (VYEAR === 'entr') {
     body = `<div class="vgroup"><h3>Entrenamientos</h3><p class="note" style="margin:4px 0 12px">Prácticas y pretemporadas del equipo.</p><div class="vgrid">${entr.map(v => videoCard(v, 0)).join('')}</div></div>`;
