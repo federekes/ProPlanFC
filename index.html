@@ -614,10 +614,7 @@ const VIDEOS = [
   {id: 'cl20-f2', tour: 'Cl 20', rival: 'Huracán Este FC', d: '09/10/2020', title: 'Huracán Este 3-1 Pro-Plan', sub: 'Clausura 2020 · 2.ª fecha',
    src: 'videos/cl20-f2-huracan.mp4', poster: 'videos/cl20-f2-huracan.jpg', dur: '0:43',
    chapters: [[0, 'El festejo de Huracán'], [6, 'Habla Esteban Mendieta (Huracán)'], [22, 'Goles'], [34, 'Habla Nicolás Patiño (Huracán)']], credit: 'Gentileza: Punta Sport TV'}
-  ,{id: 'cl20-f5', tour: 'Cl 20', rival: 'La Celeste Maldonado', d: '30/10/2020', title: 'Previa: Pro-Plan vs La Celeste', sub: 'Clausura 2020 · 5.ª fecha',
-   src: 'videos/cl20-f5-celeste-previa.mp4', poster: 'videos/cl20-f5-celeste-previa.jpg', dur: '1:29',
-   chapters: [[0, 'Habla La Celeste Maldonado'], [7.5, 'Pro-Plan antes del partido'], [77.5, 'Habla "Gorila"']], credit: 'Gentileza: Punta Sport TV'},
-  {id: 'cl20-f10', tour: 'Cl 20', rival: 'Unión FC', d: '04/12/2020', title: 'Pro-Plan 3-2 Unión', sub: 'Clausura 2020 · 10.ª fecha',
+  ,{id: 'cl20-f10', tour: 'Cl 20', rival: 'Unión FC', d: '04/12/2020', title: 'Pro-Plan 3-2 Unión', sub: 'Clausura 2020 · 10.ª fecha',
    src: 'videos/cl20-f10-union.mp4', poster: 'videos/cl20-f10-union.jpg', poster2: 'videos/cl20-f10-novelli.jpg', dur: '0:54',
    chapters: [[0, 'Habla Federico Sánchez (Unión)'], [12, 'La palabra de Jere Novelli (Pro-Plan)'], [23, 'Goles']], credit: 'Gentileza: Punta Sport TV'},
   {id: 'entr-1', group: 'Entrenamientos', d: '', title: 'Pretemporada 2021', sub: 'Con el DT interino Gabriel "Cigabor" Mylsztejn',
@@ -729,6 +726,12 @@ const VIDEOS = [
   ,{id: "cl24-semi-chacarita", tour: "Cl 24", rival: "Chacarita FC", d: "02/12/2024", ord: 1, title: "Semifinal anual: Pro-Plan 3-1 Chacarita · ¡Campeones 2024!", sub: "Semifinal Anual 2024",
    src: "videos/cl24-semi-chacarita-c.mp4", poster: "videos/cl24-semi-chacarita.jpg", dur: "11:43",
    chapters: [[0, "La previa"], [182.4, "Arranca el partido"], [187.4, "1-0"], [234.4, "2-0"], [248.4, "3-0"], [367.4, "Descuenta Chacarita"], [426.0, "Habla Mariano Bogliacino"], [458.0, "La copa"], [506.0, "Habla Fernando Pintos"], [566.0, "Habla Juan Caubarrere"], [650.0, "Habla Matías Finocchietti"], [662.0, "Habla Gabriel Arruti"]], credit: "Gentileza: Punta Sport TV"}
+  ,{id: "cl20-f7-gatos", tour: "Cl 20", rival: "Los Gatos FC", d: "16/11/2020", ord: 1, title: "Pro-Plan 3-1 Los Gatos: doblete de Moratorio", sub: "Clausura 2020 · 7.ª fecha",
+   src: "videos/cl20-f7-gatos.mp4", poster: "videos/cl20-f7-gatos.jpg", dur: "4:30",
+   chapters: [[0, "La previa en el estudio"], [45, "Los goles"], [69, "Habla Federico Moratorio"], [105, "Habla Jeremías Novelli"], [135, "Habla Sebastián Sasía (Los Gatos)"], [195, "El análisis en el estudio"], [231, "Resultados y tabla"]], credit: "Gentileza: Punta Sport TV · Programa 14"}
+  ,{id: "cl20-f5-celeste", tour: "Cl 20", rival: "La Celeste Maldonado", d: "30/10/2020", ord: 1, title: "Pro-Plan 1-0 La Celeste Maldonado: gol de Shaw", sub: "Clausura 2020 · 5.ª fecha",
+   src: "videos/cl20-f5-celeste-c.mp4", poster: "videos/cl20-f5-celeste.jpg", dur: "6:42",
+   chapters: [[0, "La previa: habla La Celeste"], [7.5, "Pro-Plan antes del partido"], [77.5, "Habla “Gorila”"], [89.3, "El sorteo y el partido"], [178.3, "El gol de Joaquín Shaw"], [293.3, "Habla Agustín Simón"], [322.3, "Habla Joaquín Shaw"], [365.3, "Habla Diego Malo (La Celeste)"]], credit: "Gentileza: Punta Sport TV"}
 ];
 VIDEOS.sort((a, b) => a.d.split('/').reverse().join('').localeCompare(b.d.split('/').reverse().join('')) || (a.ord || 0) - (b.ord || 0));
 const VREG = [];
