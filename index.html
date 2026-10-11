@@ -9,7 +9,7 @@
 <title>PROPLAN FC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@500;600;700&family=Saira+Stencil+One&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@500;600;700&family=Saira+Stencil+One&family=VT323&display=swap">
 <style>
 /* Layout: club site at night. Sticky top bar with crest + sections; each year is its own "matchday program". Single dark look by choice (club colors). */
 :root{
@@ -179,6 +179,7 @@ section+section{border-top:1px solid var(--line)}
 .mt .dt small{display:block;font-size:12px;color:var(--muted);opacity:.85}
 .mt .rival{min-width:0}
 .mt .rival b{font-weight:600}
+.mt .rival .gl{display:block;color:var(--muted);font-size:13px;line-height:1.25;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .vs{display:inline-block;font-family:var(--f-display);font-style:normal;font-weight:900;font-size:.82em;line-height:1;letter-spacing:-.01em;color:#1A1405;background:linear-gradient(180deg,#FFE24A,#F2B705);padding:3px 6px 2px 5px;margin-right:8px;transform:skewX(-14deg);border-radius:2px;box-shadow:2px 2px 0 #7A5A00;vertical-align:.08em;text-shadow:none}
 .tag{display:inline-block;font-family:var(--f-label);font-weight:700;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding:1px 7px;border-radius:4px;background:var(--pitch2);color:var(--gold);margin-left:6px;vertical-align:1px}
 .score{justify-self:end;font-family:var(--f-display);font-weight:900;font-size:22px;padding:2px 10px;border-radius:6px;color:#fff;min-width:62px;text-align:center}
@@ -445,6 +446,10 @@ dialog.lb .x{z-index:2}
 .chap button span{font-family:var(--f-label);font-weight:700;color:var(--gold);min-width:34px}
 .chap button:focus-visible{outline:2px solid var(--gold)}
 .ficha .vcard{max-width:640px}
+.hits{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px}
+.hits-l{font-family:var(--f-label);font-weight:600;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hits-n{display:inline-flex;gap:2px}
+.hits-n i{font-style:normal;font-family:"VT323",ui-monospace,"Courier New",monospace;font-size:17px;line-height:1;width:13px;padding:2px 0 1px;text-align:center;color:#7CFF6B;background:#000;border:1px solid #2a2a2a;border-radius:2px;text-shadow:0 0 4px rgba(124,255,107,.55)}
 footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);font-size:13.5px;background:var(--black2)}
 
 @media (max-width:820px){
@@ -475,7 +480,7 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
 <main id="app"></main>
 <button id="backvid" data-backvid hidden>▶ Volver al video</button>
 <div id="toast" role="status" hidden></div>
-<footer><div class="wrap"><div class="sponsors"><ul><li class="stext">Bar Carlitos</li><li><span class="slogo" role="img" aria-label="Porco Negro" style="--src:url(sponsors/porco-negro.png);height:38px;aspect-ratio:65/96"></span></li><li><span class="slogo" role="img" aria-label="HHO Broker" style="--src:url(sponsors/hho-broker.png);height:26px;aspect-ratio:152/96"></span></li><li><span class="slogo" role="img" aria-label="481 Gourmet" style="--src:url(sponsors/481-gourmet.png);height:34px;aspect-ratio:96/96"></span></li><li><span class="slogo" role="img" aria-label="Cortinas Calleros" style="--src:url(sponsors/cortinas-calleros.png);height:34px;aspect-ratio:91/96"></span></li><li><span class="slogo" role="img" aria-label="Marley Coffee" style="--src:url(sponsors/marley-coffee.png);height:34px;aspect-ratio:97/96"></span></li><li><span class="slogo" role="img" aria-label="Cambio Maiorano" style="--src:url(sponsors/cambio-maiorano.png);height:16px;aspect-ratio:557/96"></span></li><li class="stext">Rex</li><li><span class="slogo" role="img" aria-label="Vie" style="--src:url(sponsors/vie.png);height:32px;aspect-ratio:77/96"></span></li></ul></div>Datos: fichas de equipo y de partido de <a href="https://ligas.sportcenter.com.uy/superliga-sportcenter/champions" target="_blank" rel="noopener">ligas.sportcenter.com.uy</a>, actualizadas al 9 de octubre de 2026.</div></footer>
+<footer><div class="wrap"><div class="sponsors"><ul><li class="stext">Bar Carlitos</li><li><span class="slogo" role="img" aria-label="Porco Negro" style="--src:url(sponsors/porco-negro.png);height:38px;aspect-ratio:65/96"></span></li><li><span class="slogo" role="img" aria-label="HHO Broker" style="--src:url(sponsors/hho-broker.png);height:26px;aspect-ratio:152/96"></span></li><li><span class="slogo" role="img" aria-label="481 Gourmet" style="--src:url(sponsors/481-gourmet.png);height:34px;aspect-ratio:96/96"></span></li><li><span class="slogo" role="img" aria-label="Cortinas Calleros" style="--src:url(sponsors/cortinas-calleros.png);height:34px;aspect-ratio:91/96"></span></li><li><span class="slogo" role="img" aria-label="Marley Coffee" style="--src:url(sponsors/marley-coffee.png);height:34px;aspect-ratio:97/96"></span></li><li><span class="slogo" role="img" aria-label="Cambio Maiorano" style="--src:url(sponsors/cambio-maiorano.png);height:16px;aspect-ratio:557/96"></span></li><li class="stext">Rex</li><li><span class="slogo" role="img" aria-label="Vie" style="--src:url(sponsors/vie.png);height:32px;aspect-ratio:77/96"></span></li></ul></div>Datos: fichas de equipo y de partido de <a href="https://ligas.sportcenter.com.uy/superliga-sportcenter/champions" target="_blank" rel="noopener">ligas.sportcenter.com.uy</a>, actualizadas al 9 de octubre de 2026.<div class="hits" id="hits" hidden><span class="hits-l">Visitas</span><span class="hits-n" id="hits-n"></span></div></div></footer>
 
 <dialog id="dlg"></dialog>
 <dialog id="lb" class="lb"></dialog>
@@ -550,13 +555,37 @@ function etapa(n) { const ks = TORS.filter(t => (PL[n].per[t.s] || [0])[0] > 0).
 
 /* ---------- componentes ---------- */
 const MREG = [];
+function goalLine(m) {
+  const sur = n => n.split(' ').slice(-1)[0];
+  const join = a => a.length > 1 ? a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1] : a[0];
+  const big = {2: 'doblete', 3: 'triplete', 4: 'póker', 5: 'manita'};
+  let goals = '';
+  if (m.sc && m.sc.length) {
+    const sc = [...m.sc].sort((x, y) => y[1] - x[1]);
+    const nm = n => sc.filter(([x]) => sur(x) === sur(n)).length > 1 ? n : sur(n);
+    const multi = sc.filter(([, g]) => g > 1).map(([n, g]) => (big[g] || g + ' goles') + ' de ' + nm(n));
+    const one = sc.filter(([, g]) => g === 1).map(([n]) => nm(n));
+    if (one.length) multi.push((one.length > 1 ? 'goles de ' : 'gol de ') + join(one));
+    goals = join(multi);
+  }
+  const reds = (m.cards || []).filter(([, , r]) => r > 0).map(([n]) => sur(n));
+  const d = m.gf - m.gc;
+  let lead = '';
+  if (reds.length >= 2) lead = `Partido de ${reds.length} expulsados`;
+  else if (d >= 3) lead = 'Goleada';
+  else if (d <= -3) lead = 'Goleada en contra';
+  else if (m.gf === 0 && m.gc === 0) lead = 'Cero a cero';
+  let t = lead && goals ? lead + ': ' + goals : lead || goals;
+  if (reds.length === 1) t += (t ? ' · ' : '') + 'roja a ' + reds[0];
+  return t ? t.charAt(0).toUpperCase() + t.slice(1) : '';
+}
 function matchRow(m, withTour = false) {
   const r = res(m), mi = MREG.push(m) - 1;
   const ph = m.ph && m.ph !== 'Liga' ? `<span class="tag">${esc(m.ph)}</span>` : '';
   const fb = m.fotos && m.fotos.length && (m.old || m.r !== 'Old Proplans') ? `<button class="mt-fotos" data-lb="g${GALS.push(m) - 1}" data-i="0" aria-label="Ver las ${m.fotos.length} fotos del partido contra ${esc(m.r)}">${ICON.foto}<span>Fotos</span></button>` : '';
   return `<div class="mt${fb ? ' hasf' : ''}"><button aria-expanded="false">
       <span class="dt">${fmtD(m.d)}<small>${withTour ? esc(m.t.s) : esc(m.f || '')}</small></span>
-      <span class="rival"><i class="vs">VS</i><b>${esc(m.r)}</b>${ph}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
+      <span class="rival"><i class="vs">VS</i><b>${esc(m.r)}</b>${ph}${goalLine(m) ? `<small class="gl">${esc(goalLine(m))}</small>` : ''}</span>${fb ? '<span aria-hidden="true"></span>' : ''}
       <span class="score rs-${r}">${m.gf}-${m.gc}</span>
       <span class="chev" aria-hidden="true">›</span></button>
     ${fb}<div class="ficha" hidden data-mi="${mi}"></div></div>`;
@@ -951,7 +980,7 @@ function viewYear(y) {
     ${an ? `<div class="trophy ${an.pos === 'Campeón' ? 'gold' : ''}" style="margin-top:12px"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="${an.pos === 'Campeón' ? '#FF6A13' : '#9DB6FF'}" stroke-width="1.6"><path d="M7 4h10v5a5 5 0 01-10 0V4zM7 6H4a3 3 0 003 4M17 6h3a3 3 0 01-3 4M12 14v4M8 21h8M9 18h6"/></svg><div><b>"Uruguayo" ${y} · ${an.pos === 'Vice' ? 'Vicecampeón' : 'Campeón'}</b><span>${esc(an.txt)}</span></div></div>` : ''}
 
     ${ts.map(t => { const ot = tot(t.m);
-      return `<div class="tour" id="t-${t.s.replace(' ', '')}">${coverHTML(t.s, t.k)}<div class="tour-h"><div><h3>${t.k}</h3><p>${esc(t.note)}</p>
+      return `<div class="tour" id="t-${t.s.replace(' ', '')}">${tpurl(t.s) ? coverHTML(t.s, t.k) : ''}<div class="tour-h"><div><h3>${t.k}</h3><p>${esc(t.note)}</p>
         <div class="rec-line num">${ot.pj} PJ · ${ot.w}G ${ot.d}E ${ot.l}P · ${ot.gf}-${ot.gc} · ${pct(ot.w, ot.d, ot.pj)}% de efectividad</div></div>${badge(t.pos)}</div>
         <div class="form" aria-label="Resultados en orden">${t.m.map((m, j) => `<button class="rs-${res(m)}" data-jump="${t.s}-${j}" title="${fmtD(m.d)} · ${esc(m.r)} ${m.gf}-${m.gc}">${RES_TXT[res(m)]}</button>`).join('')}</div>
         <div class="matches">${t.m.map((m, j) => matchRow({...m, t}).replace(/^<div class="(mt[^"]*)">/, `<div class="$1" id="m-${t.s.replace(' ', '')}-${j}">`)).join('')}</div>
@@ -1065,7 +1094,7 @@ function viewNoticias() {
   items.push({ds: '21/09/2026', d: fmtD('21/09/2026'), t: 'Pro-Plan 1-0 Unión FC: gol de Bogliacino y arco en cero', b: 'Por la 4.ª fecha del Clausura 2026, Pro-Plan le ganó 1-0 a Unión FC en el Parque Sportcenter 3. El gol fue de Mariano Bogliacino y el arco quedó en cero. Fue la tercera victoria del torneo, en un partido con 16 convocados y una roja para Gabriel Arruti. Mirá el resumen, con aparición celestial incluida.', imgSrc: 'fotos/news-chirola.jpg', video: true, link: '#videos'});
   const key = x => x.ds ? x.ds.split('/').reverse().join('') : '';
   items.sort((a, b) => key(b).localeCompare(key(a)));
-  return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Noticias</span><h2>Lo último</h2><p class="lead">La próxima fecha, cómo vienen las tablas y las novedades del equipo.</p></div>
+  return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Lo último</span><h2>Noticias</h2><p class="lead">La próxima fecha, cómo vienen las tablas y las novedades del equipo.</p></div>
     ${proxHTML()}
     <div class="tablas">${tablaHTML(TABLAS.cl, 'Clausura 2026')}${tablaHTML(TABLAS.an, 'Tabla anual 2026')}</div>
     <p class="note" style="margin:8px 0 28px">Actualizado tras la ${TABLAS.upd}. Fuente: <a href="${TABLAS.url}/posiciones" target="_blank" rel="noopener">SportCenter ↗</a></p>
@@ -1090,8 +1119,8 @@ function viewOld() {
   const ph = photo;
   const sc = O.players.filter(p => p.g > 0).sort((a, b) => b.g - a.g);
   const cards = O.players.filter(p => p.a + p.r > 0).sort((a, b) => (b.a + b.r * 2) - (a.a + a.r * 2));
-  return `<div class="old-bg"><section class="wrap old"><div class="old-head">${crestSVG({old: true})}<div><span class="eyebrow" style="color:#C9955F">Old Proplans 38</span><h2>La vieja guardia</h2>
-      <p class="lead">Los nuevos viejos del Proplán. Haciendo sus primeras armas y un plantel que tiene la meta de ganar la copa de honor. El equipo debutó en el Apertura 2026 de Fútbol 11 +38 y terminó 4.º. Como el Clausura de la +38 se suspendió, la dirigencia hizo las gestiones para anotarlo en una categoría más difícil, la +30 del Clausura 2026, por el simple hecho de jugar a la pelota. De ahí a la posición que ocupan en la tabla. Y por eso son Old Proplans. En el plantel hay 13 ex Pro-Plan, una Parka de golero, 04 fantásticos y más noche que la luna.</p>
+  return `<div class="old-bg"><section class="wrap old"><div class="old-head">${crestSVG({old: true})}<div><span class="eyebrow" style="color:#000">Old Proplan +38</span><h2>La vieja nueva guardia</h2>
+      <p class="lead">Los nuevos viejos del Proplán. Haciendo sus primeras armas y un plantel que tiene la meta de ganar la copa de honor. En el plantel hay 13 ex Pro-Plan, una Parka de golero, 04 fantásticos.</p>
       <a class="fotos-btn" href="#old" data-goto="old-fotos">${ICON.foto}<span>Fotos</span><small class="num">${ms.reduce((a, m) => a + (m.fotos ? m.fotos.length : 0), 0)}</small></a></div></div>
     ${tpurl('OLD') ? `<figure class="old-team"><img src="${tpurl('OLD')}" alt="Plantel de Old Proplans"><figcaption>Foto temporal · Gentileza: Punta Sport TV</figcaption></figure>` : `<div class="old-team empty">${ICON.foto}<span>Foto del plantel · Próximamente</span></div>`}
     <div class="tiles" style="margin-top:22px">
@@ -1099,7 +1128,7 @@ function viewOld() {
       <div class="tile"><div class="v vw num">${o.w}</div><div class="l">Ganados</div></div>
       <div class="tile"><div class="v vd num">${o.d}</div><div class="l">Empatados</div></div>
       <div class="tile"><div class="v vl num">${o.l}</div><div class="l">Perdidos</div></div>
-      <div class="tile"><div class="v num">${o.gf}<span style="color:var(--muted);font-size:28px"> – ${o.gc}</span></div><div class="l">Goles</div></div>
+      <div class="tile"><div class="v num">${o.gf}</div><div class="l">Goles</div></div>
       <div class="tile"><div class="v num">${cards.reduce((a, p) => a + p.a, 0)}</div><div class="l">Amarillas</div><div class="s">${cards.reduce((a, p) => a + p.r, 0) ? cards.reduce((a, p) => a + p.r, 0) + ' rojas' : 'Ninguna roja'}</div></div>
       <div class="tile"><div class="v num">4º</div><div class="l">Apertura +38</div><div class="s">De 7 equipos</div></div>
       <div class="tile"><div class="v num">10º</div><div class="l">Clausura +30</div><div class="s">De 11 equipos</div></div></div>
@@ -1235,6 +1264,16 @@ $('#lb').addEventListener('click', e => { if (e.target === $('#lb')) $('#lb').cl
 document.addEventListener('play', e => { const v = e.target; if (v.tagName === 'VIDEO' && +v.dataset.start && !v.dataset.started) { v.dataset.started = '1'; v.currentTime = +v.dataset.start; } }, true);
 window.addEventListener('hashchange', route);
 route();
+(function () {
+  const ns = 'federekes-proplanfc', key = 'visitas';
+  let seen = false; try { seen = sessionStorage.getItem('pp-visit') === '1'; } catch (e) {}
+  fetch(`https://abacus.jasoncameron.dev/${seen ? 'get' : 'hit'}/${ns}/${key}`).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || typeof j.value !== 'number') return;
+    try { sessionStorage.setItem('pp-visit', '1'); } catch (e) {}
+    document.getElementById('hits-n').innerHTML = [...String(j.value).padStart(6, '0')].map(d => `<i>${d}</i>`).join('');
+    document.getElementById('hits').hidden = false;
+  }).catch(() => {});
+})();
 </script>
 
 </body>
