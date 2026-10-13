@@ -292,6 +292,7 @@ dialog::backdrop{background:rgba(5,9,20,.75)}
 .ultres .score{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,7vw,52px);line-height:1;color:var(--gold);margin:0 6px}
 .ultres .gl{color:var(--ink2);font-size:15px;margin:6px 0 0}
 .ultres .vcard{margin-top:14px}
+.ultres .ur-t{font-size:22px;margin:14px 0 6px}.ultres .ur-p{margin:0 0 8px;line-height:1.55}
 .tablas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .tabla{background:var(--pitch);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 6px;overflow-x:auto}
 .tabla h3{font-family:var(--f-label);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:2px 4px 8px}
@@ -1099,7 +1100,8 @@ const DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', '
 function proxHTML() {
   const now = new Date(), t0 = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const pd = d => { const [a, b, c] = d.split('/').map(Number); return new Date(c, b - 1, a); };
-  const i = PROX.findIndex(x => pd(x.d) >= t0); if (i < 0) return '';
+  const jugado = new Set(TORS[TORS.length - 1].m.map(m => m.d));
+  const i = PROX.findIndex(x => pd(x.d) >= t0 && !jugado.has(x.d)); if (i < 0) return '';
   const x = PROX[i], dt = pd(x.d), hoy = +dt === +t0;
   const libre = x.libre ? PROX.slice(i + 1).find(y => !y.libre) : null, m = libre || x, mdt = pd(m.d);
   const cuando = `${DIAS[mdt.getDay()][0].toUpperCase() + DIAS[mdt.getDay()].slice(1)} ${mdt.getDate()} de ${MESES[mdt.getMonth()]}`;
@@ -1112,6 +1114,9 @@ function tablaHTML(rows, title) {
   return `<div class="tabla"><h3>${title}</h3><table><thead><tr><th>#</th><th class="tq">Equipo</th><th>PJ</th><th class="xs">PG</th><th class="xs">PE</th><th class="xs">PP</th><th class="xs">GF</th><th class="xs">GC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>
     ${rows.map((r, i) => `<tr${r[0] === 'Pro-Plan FC' ? ' class="me"' : ''}><td>${i + 1}</td><td class="tq">${esc(r[0])}</td>${r.slice(1).map((v, j) => `<td class="num${j >= 1 && j <= 5 ? ' xs' : ''}${j === 7 ? ' pts' : ''}">${j === 6 && v > 0 ? '+' + v : v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
+const NOTAS = {
+  '12/10/2026': {t: 'Pro-Plan 3-1 Tijera FC: primero solo en el Clausura', b: ['Por la 7.ª fecha del Clausura 2026, con un plantel diezmado, sin Nano ni el Chirola, y un compromiso difícil contra el tercero de la tabla, Pro-Plan le ganó 3-1 a Tijera FC. Como en cada fin de semana largo, faltó gente.', 'El capitán Pablo Berto volvió a las canchas entre algodones: salió de titular y fue la manija del equipo, con un gol y una asistencia. Román Tejera metió un golazo de chilena y Luis «Lucho» Del Castillo cerró la cuenta de tiro libre, como había avisado: «se la pongo en el coco y gol».', 'Con la derrota de Leicester, Pro-Plan quedó primero solo en el Clausura.']}
+};
 function ultResHTML() {
   const last = TORS[TORS.length - 1], m = last.m[last.m.length - 1]; if (!m) return '';
   const v = VIDEOS.find(x => x.rival === m.r && x.d === m.d);
@@ -1120,6 +1125,7 @@ function ultResHTML() {
     <div class="prox-m"><span class="prox-t">Pro-Plan</span><span class="score num">${m.gf}-${m.gc}</span><span class="prox-t">${esc(m.r)}</span></div>
     <div class="prox-i num"><span>${fmtD(m.d)}</span>${m.can ? `<span>${esc(m.can)}</span>` : ''}</div>
     ${goles ? `<p class="gl">Goles: ${esc(goles)}</p>` : ''}
+    ${NOTAS[m.d] ? `<h3 class="ur-t">${esc(NOTAS[m.d].t)}</h3>${NOTAS[m.d].b.map(x => `<p class="ur-p">${esc(x)}</p>`).join('')}` : ''}
     ${v ? videoCard(v) : ''}</div>`;
 }
 function viewNoticias() {
@@ -1130,7 +1136,6 @@ function viewNoticias() {
     ...recentHT.map(h => { const v = VIDEOS.find(x => x.rival === h.m.r && x.tour === h.m.t.s);
       return {ds: h.m.d, d: fmtD(h.m.d), t: `${HTL(h.g)} de ${h.n === 'Juan Castro' ? 'Juanchi Castro' : h.n} contra ${h.m.r}`, b: `${h.n} hizo ${h.g} goles en el ${h.m.gf}-${h.m.gc} a ${h.m.r}, por el ${h.m.t.k}.` + (v ? ' Mirá el resumen y su palabra después del partido.' : ''), link: v ? '#videos' : '#a2026', who: h.n, video: !!v}; }),
   ];
-  items.push({ds: '12/10/2026', d: fmtD('12/10/2026'), t: 'Pro-Plan 3-1 Tijera FC: primero solo en el Clausura', b: 'Por la 7.ª fecha del Clausura 2026, con un plantel diezmado, sin Nano ni el Chirola, y un compromiso difícil contra el tercero de la tabla, Pro-Plan le ganó 3-1 a Tijera FC. Como en cada fin de semana largo, faltó gente. El capitán Pablo Berto volvió a las canchas entre algodones: salió de titular y fue la manija del equipo, con un gol y una asistencia. Román Tejera metió un golazo de chilena y Luis «Lucho» Del Castillo cerró la cuenta de tiro libre, como había avisado: «se la pongo en el coco y gol». Con la derrota de Leicester, Pro-Plan quedó primero solo. Mirá el gol de Lucho.', imgSrc: 'videos/cl26-f7-tijera.jpg', video: true, link: '#videos'});
   items.push({ds: '12/10/2026', d: fmtD('12/10/2026'), t: 'Old Proplans cayó 3-2 con Unión FC', b: 'Por la 7.ª fecha del Clausura, Old Proplans perdió 3-2 con Unión FC. No pasa nada: la meta de los veteranos es ganar la Copa de Honor.', link: '#old'});
   items.push({ds: '21/09/2026', d: fmtD('21/09/2026'), t: 'Pro-Plan 1-0 Unión FC: gol de Bogliacino y arco en cero', b: 'Por la 4.ª fecha del Clausura 2026, Pro-Plan le ganó 1-0 a Unión FC en el Parque Sportcenter 3. El gol fue de Mariano Bogliacino y el arco quedó en cero. Fue la tercera victoria del torneo, en un partido con 16 convocados y una roja para Gabriel Arruti. Mirá el resumen, con aparición celestial incluida.', imgSrc: 'fotos/news-chirola.jpg', video: true, link: '#videos'});
   const key = x => x.ds ? x.ds.split('/').reverse().join('') : '';
