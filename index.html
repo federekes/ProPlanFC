@@ -660,7 +660,7 @@ function drawLB() {
 const VIDEOS = [
   {id: 'cl26-f7', tour: 'Cl 26', rival: 'Tijera FC', d: '12/10/2026', title: 'Pro-Plan 3-1 Tijera: «se la pongo en el coco y gol»', sub: 'Clausura 2026 · 7.ª fecha',
    src: 'videos/cl26-f7-tijera.mp4', poster: 'videos/cl26-f7-tijera.jpg', dur: '0:17',
-   chapters: [[0, 'Tiro libre y cabezazo de Lucho Del Castillo, el segundo gol']], credit: 'Video de la tribuna de Pro-Plan'},
+   chapters: [[0, 'Centro de Berto y cabezazo de Lucho Del Castillo, el segundo gol']], credit: 'Video de la tribuna de Pro-Plan'},
   {id: 'cl26-f6', tour: 'Cl 26', rival: 'Finisterre FC', d: '05/10/2026', title: 'Pro-Plan 4-3 Finisterre', sub: 'Clausura 2026 · 6.ª fecha',
    src: 'videos/cl26-f6-finisterre.mp4', poster: 'videos/cl26-f6-resumen.jpg', poster2: 'videos/cl26-f6-juanchi.jpg', dur: '1:23',
    chapters: [[0, 'Resumen del partido'], [39.8, 'La palabra de Juanchi Castro, autor del hat trick']], credit: 'Gentileza: Punta Sport TV'},
@@ -1115,7 +1115,7 @@ function tablaHTML(rows, title) {
     ${rows.map((r, i) => `<tr${r[0] === 'Pro-Plan FC' ? ' class="me"' : ''}><td>${i + 1}</td><td class="tq">${esc(r[0])}</td>${r.slice(1).map((v, j) => `<td class="num${j >= 1 && j <= 5 ? ' xs' : ''}${j === 7 ? ' pts' : ''}">${j === 6 && v > 0 ? '+' + v : v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
 const NOTAS = {
-  '12/10/2026': {t: 'Pro-Plan 3-1 Tijera FC: primero solo en el Clausura', b: ['Por la 7.ª fecha del Clausura 2026, con un plantel diezmado, sin Nano ni el Chirola, y un compromiso difícil contra el tercero de la tabla, Pro-Plan le ganó 3-1 a Tijera FC. Y lo ganó de atrás, a lo Pro-Plan. Como en cada fin de semana largo, faltó gente.', 'Román Tejera empezó la remontada con un golazo de chilena. Después Luis «Lucho» Del Castillo marcó el segundo de cabeza, tras un tiro libre que vino con aviso: «se la pongo en el coco y gol». Y el tercero fue del capitán Pablo Berto, que volvió a las canchas entre algodones: salió de titular y fue la manija del equipo, con un gol y una asistencia.', 'Con la derrota de Leicester, Pro-Plan quedó primero solo en el Clausura.']}
+  '12/10/2026': {t: 'Pro-Plan 3-1 Tijera FC: primero solo en el Clausura', b: ['Por la 7.ª fecha del Clausura 2026, con un plantel diezmado, sin Nano ni el Chirola, y un compromiso difícil contra el tercero de la tabla, Pro-Plan le ganó 3-1 a Tijera FC. Y lo ganó de atrás, a lo Pro-Plan. Como en cada fin de semana largo, faltó gente.', 'Román Tejera empezó la remontada con un golazo de chilena. Después llegó el segundo: Pablo Berto avisó antes del tiro libre «se la pongo en el coco y gol», tiró el centro y Luis «Lucho» Del Castillo la metió de cabeza. Y el tercero también fue del capitán, que volvió a las canchas entre algodones: salió de titular y fue la manija del equipo, con un gol y una asistencia.', 'Con la derrota de Leicester, Pro-Plan quedó primero solo en el Clausura.']}
 };
 function ultResHTML() {
   const last = TORS[TORS.length - 1], m = last.m[last.m.length - 1]; if (!m) return '';
