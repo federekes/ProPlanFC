@@ -288,6 +288,10 @@ dialog::backdrop{background:rgba(5,9,20,.75)}
 .prox-m .vs{font-size:20px;margin:0 2px}
 .prox-i{display:flex;flex-wrap:wrap;gap:4px 18px;color:var(--ink2);font-size:15px}
 .prox-i span:first-child{color:var(--ink);font-weight:600}
+.ultres{border:1px solid var(--line);border-left:4px solid var(--gold);background:linear-gradient(135deg,var(--pitch2),var(--pitch));border-radius:var(--r);padding:16px 18px;margin-bottom:22px}
+.ultres .score{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,7vw,52px);line-height:1;color:var(--gold);margin:0 6px}
+.ultres .gl{color:var(--ink2);font-size:15px;margin:6px 0 0}
+.ultres .vcard{margin-top:14px}
 .tablas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .tabla{background:var(--pitch);border:1px solid var(--line);border-radius:var(--r);padding:12px 12px 6px;overflow-x:auto}
 .tabla h3{font-family:var(--f-label);font-weight:700;font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:2px 4px 8px}
@@ -1108,6 +1112,16 @@ function tablaHTML(rows, title) {
   return `<div class="tabla"><h3>${title}</h3><table><thead><tr><th>#</th><th class="tq">Equipo</th><th>PJ</th><th class="xs">PG</th><th class="xs">PE</th><th class="xs">PP</th><th class="xs">GF</th><th class="xs">GC</th><th>DIF</th><th>PTS</th></tr></thead><tbody>
     ${rows.map((r, i) => `<tr${r[0] === 'Pro-Plan FC' ? ' class="me"' : ''}><td>${i + 1}</td><td class="tq">${esc(r[0])}</td>${r.slice(1).map((v, j) => `<td class="num${j >= 1 && j <= 5 ? ' xs' : ''}${j === 7 ? ' pts' : ''}">${j === 6 && v > 0 ? '+' + v : v}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 }
+function ultResHTML() {
+  const last = TORS[TORS.length - 1], m = last.m[last.m.length - 1]; if (!m) return '';
+  const v = VIDEOS.find(x => x.rival === m.r && x.d === m.d);
+  const goles = (m.sc || []).map(([n, g]) => n + (g > 1 ? ' (' + g + ')' : '')).join(', ');
+  return `<div class="ultres"><div class="prox-k">Último resultado · ${last.k} · ${m.f.charAt(0) + m.f.slice(1).toLowerCase()}</div>
+    <div class="prox-m"><span class="prox-t">Pro-Plan</span><span class="score num">${m.gf}-${m.gc}</span><span class="prox-t">${esc(m.r)}</span></div>
+    <div class="prox-i num"><span>${fmtD(m.d)}</span>${m.can ? `<span>${esc(m.can)}</span>` : ''}</div>
+    ${goles ? `<p class="gl">Goles: ${esc(goles)}</p>` : ''}
+    ${v ? videoCard(v) : ''}</div>`;
+}
 function viewNoticias() {
   const last = TORS[TORS.length - 1], o = tot(last.m);
   const recentHT = HT.filter(h => h.m.t.y === 2026).sort((a, b) => b.m.d.split('/').reverse().join('').localeCompare(a.m.d.split('/').reverse().join('')));
@@ -1122,6 +1136,7 @@ function viewNoticias() {
   const key = x => x.ds ? x.ds.split('/').reverse().join('') : '';
   items.sort((a, b) => key(b).localeCompare(key(a)));
   return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Lo último</span><h2>Noticias</h2><p class="lead">La próxima fecha, cómo vienen las tablas y las novedades del equipo.</p></div>
+    ${ultResHTML()}
     ${proxHTML()}
     <div class="tablas">${tablaHTML(TABLAS.cl, 'Clausura 2026')}${tablaHTML(TABLAS.an, 'Tabla anual 2026')}</div>
     <p class="note" style="margin:8px 0 28px">Actualizado tras la ${TABLAS.upd}. Fuente: <a href="${TABLAS.url}/posiciones" target="_blank" rel="noopener">SportCenter ↗</a></p>
