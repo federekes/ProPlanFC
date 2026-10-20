@@ -1129,6 +1129,10 @@ function ultResHTML() {
     ${NOTAS[m.d] ? `<h3 class="ur-t">${esc(NOTAS[m.d].t)}</h3>${NOTAS[m.d].st ? `<p class="ur-st">${esc(NOTAS[m.d].st)}</p>` : ''}${NOTAS[m.d].b.map(x => `<p class="ur-p">${esc(x)}</p>`).join('')}` : ''}
     ${v ? videoCard(v) : ''}</div>`;
 }
+function OLD_NEWS() { return [
+    {ds: '19/10/2026', d: fmtD('19/10/2026'), t: 'Old Proplans: a por esa Copa de Honor', st: 'El objetivo intacto', b: 'Por la 8.ª fecha del Clausura, Old Proplans empató 1-1 con Ebrios City, con gol de Agustín Fabbio. Merecimos ganar, pero por lo menos no vamos últimos. Más allá de la tabla, la campaña de los Old es enorme en convocatoria y en asados, que es donde se ganan los campeonatos de verdad. El mejor partido fue contra la +30: el clásico ante Pro-Plan, que se perdió apenas 2-1. Ahora, con el plantel unido y la parrilla prendida, a por esa Copa de Honor.', who: 'Agustin Fabbio', link: '#old'},
+    {ds: '12/10/2026', d: fmtD('12/10/2026'), t: 'Old Proplans cayó 3-2 con Unión FC', b: 'Por la 7.ª fecha del Clausura, Old Proplans perdió 3-2 con Unión FC. No pasa nada: la meta de los veteranos es ganar la Copa de Honor.', link: '#old'}]; }
+function newsCardHTML(it) { return `<a class="nw" href="${it.link}"><div class="nw-img">${it.imgSrc ? `<img src="${it.imgSrc}" alt="" loading="lazy">` : it.img && tpurl(it.img) ? `<img src="${tpurl(it.img)}" alt="">` : it.who ? photo(it.who, 64) : crestSVG({detail: false})}</div><div class="nw-b"><span class="eyebrow" style="font-size:12.5px">${it.d}</span><h3 style="font-size:22px;margin-top:2px">${esc(it.t)}</h3>${it.st ? `<p style="margin:0 0 4px;color:var(--gold);font-style:italic">${esc(it.st)}</p>` : ''}<p>${esc(it.b)}</p>${it.credit ? `<p class="credit" style="margin-top:4px">${esc(it.credit)}</p>` : ''}${it.video ? '<span class="tag" style="margin:6px 0 0">▶ Video</span>' : ''}</div></a>`; }
 function viewNoticias() {
   const last = TORS[TORS.length - 1], o = tot(last.m);
   const recentHT = HT.filter(h => h.m.t.y === 2026).sort((a, b) => b.m.d.split('/').reverse().join('').localeCompare(a.m.d.split('/').reverse().join('')));
@@ -1137,8 +1141,7 @@ function viewNoticias() {
     ...recentHT.map(h => { const v = VIDEOS.find(x => x.rival === h.m.r && x.tour === h.m.t.s);
       return {ds: h.m.d, d: fmtD(h.m.d), t: `${HTL(h.g)} de ${h.n === 'Juan Castro' ? 'Juanchi Castro' : h.n} contra ${h.m.r}`, b: `${h.n} hizo ${h.g} goles en el ${h.m.gf}-${h.m.gc} a ${h.m.r}, por el ${h.m.t.k}.` + (v ? ' Mirá el resumen y su palabra después del partido.' : ''), link: v ? '#videos' : '#a2026', who: h.n, video: !!v}; }),
   ];
-  items.push({ds: '19/10/2026', d: fmtD('19/10/2026'), t: 'Old Proplans: a por esa Copa de Honor', st: 'El objetivo intacto', b: 'Por la 8.ª fecha del Clausura, Old Proplans empató 1-1 con Ebrios City, con gol de Agustín Fabbio. Merecimos ganar, pero por lo menos no vamos últimos. Más allá de la tabla, la campaña de los Old es enorme en convocatoria y en asados, que es donde se ganan los campeonatos de verdad. El mejor partido fue contra la +30: el clásico ante Pro-Plan, que se perdió apenas 2-1. Ahora, con el plantel unido y la parrilla prendida, a por esa Copa de Honor.', who: 'Agustin Fabbio', link: '#old'});
-  items.push({ds: '12/10/2026', d: fmtD('12/10/2026'), t: 'Old Proplans cayó 3-2 con Unión FC', b: 'Por la 7.ª fecha del Clausura, Old Proplans perdió 3-2 con Unión FC. No pasa nada: la meta de los veteranos es ganar la Copa de Honor.', link: '#old'});
+  items.push(...OLD_NEWS());
   items.push({ds: '21/09/2026', d: fmtD('21/09/2026'), t: 'Pro-Plan 1-0 Unión FC: gol de Bogliacino y arco en cero', b: 'Por la 4.ª fecha del Clausura 2026, Pro-Plan le ganó 1-0 a Unión FC en el Parque Sportcenter 3. El gol fue de Mariano Bogliacino y el arco quedó en cero. Fue la tercera victoria del torneo, en un partido con 16 convocados y una roja para Gabriel Arruti. Mirá el resumen, con aparición celestial incluida.', imgSrc: 'fotos/news-chirola.jpg', video: true, link: '#videos'});
   { const lt = TORS[TORS.length - 1], lm = lt.m[lt.m.length - 1];
     Object.entries(NOTAS).forEach(([dd, n]) => { if (!lm || dd !== lm.d) { const mm = lt.m.find(x => x.d === dd), vv = mm && VIDEOS.find(x => x.rival === mm.r && x.d === dd);
@@ -1150,7 +1153,7 @@ function viewNoticias() {
     ${proxHTML()}
     <div class="tablas">${tablaHTML(TABLAS.cl, 'Clausura 2026')}${tablaHTML(TABLAS.an, 'Tabla anual 2026')}</div>
     <p class="note" style="margin:8px 0 28px">Actualizado tras la ${TABLAS.upd}. Fuente: <a href="${TABLAS.url}/posiciones" target="_blank" rel="noopener">SportCenter ↗</a></p>
-    <div class="news">${items.map(it => `<a class="nw" href="${it.link}"><div class="nw-img">${it.imgSrc ? `<img src="${it.imgSrc}" alt="" loading="lazy">` : it.img && tpurl(it.img) ? `<img src="${tpurl(it.img)}" alt="">` : it.who ? photo(it.who, 64) : crestSVG({detail: false})}</div><div class="nw-b"><span class="eyebrow" style="font-size:12.5px">${it.d}</span><h3 style="font-size:22px;margin-top:2px">${esc(it.t)}</h3>${it.st ? `<p style="margin:0 0 4px;color:var(--gold);font-style:italic">${esc(it.st)}</p>` : ''}<p>${esc(it.b)}</p>${it.credit ? `<p class="credit" style="margin-top:4px">${esc(it.credit)}</p>` : ''}${it.video ? '<span class="tag" style="margin:6px 0 0">▶ Video</span>' : ''}</div></a>`).join('')}
+    <div class="news">${items.map(newsCardHTML).join('')}
     <div class="nw empty"><div class="nw-img">${ICON.news}</div><div class="nw-b"><h3 style="font-size:20px">Próximas noticias</h3><p>Fichajes, previas de las finales, cumpleaños y todo lo que pase en el club.</p></div></div></div></section>`;
 }
 const OLDM = ((DATA.old && DATA.old.matches) || []).map(m => ({...m, old: true, t: {k: 'Clausura 2026', s: 'OLD', y: 2026}}));
@@ -1185,6 +1188,7 @@ function viewOld() {
       <div class="tile"><div class="v num">4º</div><div class="l">Apertura +38</div><div class="s">De 7 equipos</div></div>
       <div class="tile"><div class="v num">10º</div><div class="l">Clausura +30</div><div class="s">De 11 equipos</div></div></div>
     <div class="dt-card" style="margin-top:14px">${BOT}<div><span class="eyebrow">Director técnico</span><h3>Chat GPT</h3><p class="note" style="margin:4px 0 0">Arma el equipo, la táctica y los cambios. Nunca levantó la voz.</p></div></div>
+    <section style="padding-block:30px 10px"><div class="sec-head"><span class="eyebrow">Lo último</span><h3>Noticias de los Old</h3></div><div class="news">${OLD_NEWS().sort((x, y) => y.ds.split('/').reverse().join('').localeCompare(x.ds.split('/').reverse().join(''))).map(it => newsCardHTML({...it, link: '#old'})).join('')}</div></section>
     <section style="padding-block:30px 10px"><div class="sec-head"><span class="eyebrow">Clausura 2026 · F11 +30</span><h3>Partidos</h3><p class="lead">Tocá un partido para ver la ficha: goles, tarjetas, convocados y fotos.</p></div>
       <div class="matches">${OLDM.map(m => matchRow(m)).join('')}</div>
       <p class="note" style="margin-top:10px"><a href="https://ligas.sportcenter.com.uy/superliga-sportcenter/futbol-11-30-clausura-2026/team/540" target="_blank" rel="noopener">Ficha de Old Proplans en la liga ↗</a></p></section>
