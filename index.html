@@ -165,6 +165,7 @@ section+section{border-top:1px solid var(--line)}
 .more{margin-top:12px;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;color:var(--ink2);font-family:var(--f-label);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 
 /* fotos */
+.art-sh{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;background:#25D366;color:#0b1a10;border:0;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:14px}.art-sh svg{width:18px;height:18px}
 .art h3{font-size:30px;line-height:1.05}.art .art-st{margin:-8px 0 0;color:var(--gold);font-style:italic}.art p{margin:0;line-height:1.6}.art figure{margin:0}.art figure img{width:100%;border-radius:12px;display:block}.art figcaption{font-size:13px;color:var(--muted);margin-top:6px}
 .vcard[id]{scroll-margin-top:84px}
 .mt[id]{scroll-margin-top:84px}
@@ -1139,7 +1140,7 @@ function ultResHTML() {
     ${v ? videoCard(v) : ''}</div>`;
 }
 function OLD_NEWS() { return [
-    {ds: '28/10/2026', d: fmtD('28/10/2026'), t: 'Velho Proplão Campeão: RUMO AO HEXA', st: 'Pudo salir mal, pero salió bien', b: 'Al parecer, Old Proplans se anotó sin permiso de la directiva en un mundialito de fútbol 7 bajo el seudónimo «Brasil», y con el diario del lunes podemos decir que fue un éxito: no hubo lesionados, que es lo más importante.', imgSrc: 'fotos/news-old-mundialito.jpg', video: true, link: '#old', art: [
+    {ds: '28/10/2026', d: fmtD('28/10/2026'), slug: 'velho-proplao-campeao', t: 'Velho Proplão Campeão: RUMO AO HEXA', st: 'Pudo salir mal, pero salió bien', b: 'Al parecer, Old Proplans se anotó sin permiso de la directiva en un mundialito de fútbol 7 bajo el seudónimo «Brasil», y con el diario del lunes podemos decir que fue un éxito: no hubo lesionados, que es lo más importante.', imgSrc: 'fotos/news-old-mundialito.jpg', video: true, link: '#old', art: [
       {img: 'fotos/news-old-mundialito.jpg', cap: 'Los campeones con la copa de chocolate, igualita a la de la FIFA.'},
       {p: 'Al parecer, Old Proplans se anotó sin permiso de la directiva en un mundialito de fútbol 7 bajo el seudónimo «Brasil», y con el diario del lunes podemos decir que fue un éxito: no hubo lesionados, que es lo más importante.'},
       {img: 'fotos/news-old-mundialito-fixture.jpg', cap: 'Grupo B: Francia, Brasil, Uruguay e Inglaterra. Citación 19:30 en Lobos Rugby Club.'},
@@ -1154,7 +1155,7 @@ const ARTS = [];
 function newsCardHTML(it) { return `<a class="nw" href="${it.link}"${it.art ? ` data-art="${ARTS.push(it) - 1}"` : it.go ? ` data-goto="${it.go}"` : ''}><div class="nw-img">${it.imgSrc ? `<img src="${it.imgSrc}" alt="" loading="lazy">` : it.img && tpurl(it.img) ? `<img src="${tpurl(it.img)}" alt="">` : it.who ? photo(it.who, 64) : crestSVG({detail: false})}</div><div class="nw-b"><span class="eyebrow" style="font-size:12.5px">${it.d}</span><h3 style="font-size:22px;margin-top:2px">${esc(it.t)}</h3>${it.st ? `<p style="margin:0 0 4px;color:var(--gold);font-style:italic">${esc(it.st)}</p>` : ''}<p>${esc(it.b)}</p>${it.credit ? `<p class="credit" style="margin-top:4px">${esc(it.credit)}</p>` : ''}${it.art ? '<span class="tag" style="margin:6px 6px 0 0">Leer la nota completa ›</span>' : ''}${it.video ? '<span class="tag" style="margin:6px 0 0">▶ Video</span>' : ''}</div></a>`; }
 function openArt(it) {
   const d = $('#dlg');
-  d.innerHTML = `<button class="x" aria-label="Cerrar" data-close>×</button><article class="dlg art"><span class="eyebrow">${it.d}</span><h3>${esc(it.t)}</h3>${it.st ? `<p class="art-st">${esc(it.st)}</p>` : ''}
+  d.innerHTML = `<button class="x" aria-label="Cerrar" data-close>×</button><article class="dlg art"><span class="eyebrow">${it.d}</span>${it.slug ? `<button class="art-sh" data-nshare="${it.slug}">${ICON.share}<span>Compartir nota</span></button>` : ''}<h3>${esc(it.t)}</h3>${it.st ? `<p class="art-st">${esc(it.st)}</p>` : ''}
     ${it.art.map(x => x.p ? `<p>${esc(x.p)}</p>` : x.img ? `<figure><img src="${x.img}" alt="${esc(x.cap || '')}" loading="lazy">${x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : ''}</figure>` : x.video ? (v => v ? videoCard(v) : '')(VIDEOS.find(v => v.id === x.video)) : '').join('')}</article>`;
   d.showModal(); d.scrollTop = 0;
 }
@@ -1275,6 +1276,7 @@ const VIEWS = [...NAV, ...YEARS.map(y => ['a' + y, String(y)]), ['plantel', 'Pla
 const PARENT = k => k.startsWith('a20') ? 'campeonatos' : k === 'plantel' ? 'inicio' : k;
 function route() {
   let h = (location.hash || '#inicio').slice(1), deepV = null;
+  let deepN = null; if (h.startsWith('nota-')) { deepN = OLD_NEWS().find(x => x.slug === h.slice(5)); h = deepN && deepN.link ? deepN.link.slice(1) : 'old'; }
   if (h.startsWith('v-')) { deepV = VIDEOS.find(v => v.id === h.slice(2)); if (deepV) { const t = TORS.find(x => x.s === deepV.tour); VYEAR = t ? t.y : 'entr'; } h = 'videos'; }
   const key = VIEWS.some(v => v[0] === h) ? h : 'inicio';
   $('#nav').innerHTML = NAV.map(([k, l]) => `<a href="#${k}"${k === 'old' ? ' class="nav-old"' : ''}${k === PARENT(key) ? ' aria-current="page"' : ''}>${l === 'Old Proplans' ? crestSVG({old: true, detail: false}) + 'Old<span class="xs"> Proplans</span>' : l}</a>`).join('');
@@ -1288,6 +1290,7 @@ function route() {
   else if (key === 'fotos') app.innerHTML = viewFotos();
   else if (key === 'noticias') app.innerHTML = viewNoticias();
   else app.innerHTML = viewYear(+key.slice(1));
+  if (deepN && deepN.art) setTimeout(() => openArt(deepN), 80);
   if (deepV) setTimeout(() => { const c = document.querySelector(`.vcard[data-vid="${deepV.id}"]`); if (c) { c.scrollIntoView({block: 'center'}); c.classList.add('now'); } }, 80);
   if (PENDING_GOTO) { const g = PENDING_GOTO; PENDING_GOTO = null; setTimeout(() => { const el = document.getElementById(g); if (el) { if (el.classList.contains('mt')) toggle(el, true); el.scrollIntoView({block: 'start'}); } }, 60); }
   $('#nav [aria-current]')?.scrollIntoView({inline: 'center', block: 'nearest'});
@@ -1307,6 +1310,9 @@ document.addEventListener('click', e => {
     if (v.requestFullscreen) v.requestFullscreen().catch(() => v.webkitEnterFullscreen && v.webkitEnterFullscreen());
     else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
     if (v.paused) v.play().catch(() => {}); return; }
+  const ns = t.closest('[data-nshare]'); if (ns) { const it = OLD_NEWS().find(x => x.slug === ns.dataset.nshare); const url = 'https://federekes.github.io/ProPlanFC/n/' + ns.dataset.nshare + '.html';
+    if (navigator.share) { navigator.share({title: it ? it.t : 'PROPLAN FC', url}).catch(err => { if (err && err.name !== 'AbortError') copyText(url).then(ok => toast(ok ? 'Link copiado' : url)); }); return; }
+    copyText(url).then(ok => toast(ok ? 'Link copiado. Pegalo en WhatsApp.' : url)); return; }
   const sh = t.closest('[data-share],[data-copy]'); if (sh) { const v = VIDEOS.find(x => x.id === (sh.dataset.share || sh.dataset.copy)); if (!v) return; const url = vlink(v);
     if (sh.dataset.share && navigator.share) { navigator.share({title: v.title, text: v.title + ' · PROPLAN FC', url}).catch(err => { if (err && err.name !== 'AbortError') copyText(url).then(ok => toast(ok ? 'Link copiado' : url)); }); return; }
     copyText(url).then(ok => toast(ok ? 'Link copiado. Pegalo donde quieras.' : url)); return; }
