@@ -1141,7 +1141,21 @@ function ultResHTML() {
     ${NOTAS[m.d] ? `<h3 class="ur-t">${esc(NOTAS[m.d].t)}</h3>${NOTAS[m.d].st ? `<p class="ur-st">${esc(NOTAS[m.d].st)}</p>` : ''}${NOTAS[m.d].b.map(x => `<p class="ur-p">${esc(x)}</p>`).join('')}` : ''}
     ${v ? videoCard(v) : ''}</div>`;
 }
+function NEWS30() { return [
+    {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'proplan-primero-anual', t: "Pro-Plan cayó con Pichanga, pero terminó primero en la anual", st: "Leicester también perdió · En la final le alcanza con el empate", b: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, que con el triunfo se metió en la Copa de Plata. Fue la primera derrota del equipo en el torneo. El traspié no costó caro: Leicester, el único que podía alcanzarlo, también perdió, y Pro-Plan terminó primero en la tabla anual. Ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate.", imgSrc: 'fotos/news-30-primero-anual.jpg', link: '#noticias', art: [
+      {img: 'fotos/news-30-primero-anual.jpg'},
+      {p: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, que con el triunfo se metió en la Copa de Plata. Fue la primera derrota del equipo en el torneo."},
+      {p: "El traspié no costó caro: Leicester, el único que podía alcanzarlo, también perdió, y Pro-Plan terminó primero en la tabla anual."},
+      {p: "Ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate."},
+      ]}]; }
+const ALL_ARTS = () => [...NEWS30(), ...OLD_NEWS()];
 function OLD_NEWS() { return [
+    {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'old-mieles-de-la-victoria', t: "Old Proplans conoció las mieles de la victoria", st: "7-2 a Los Picas: la 38 dio la nota de la semana", b: "Por la 11.ª fecha del Clausura, Old Proplans le ganó 7-2 a Los Picas y conoció, por primera vez en el campeonato, las mieles de la victoria. Nada más y nada menos que siete goles: la 38 fue la que dio la nota en la semana. Así, los Old terminan la fase regular con 4 puntos, un triunfo en el bolsillo y la moral por las nubes. Ahora, lo que importa: la Copa de Honor.", imgSrc: 'fotos/news-old-7-2-picas.jpg', link: '#old', art: [
+      {img: 'fotos/news-old-7-2-picas.jpg'},
+      {p: "Por la 11.ª fecha del Clausura, Old Proplans le ganó 7-2 a Los Picas y conoció, por primera vez en el campeonato, las mieles de la victoria."},
+      {p: "Nada más y nada menos que siete goles: la 38 fue la que dio la nota en la semana."},
+      {p: "Así, los Old terminan la fase regular con 4 puntos, un triunfo en el bolsillo y la moral por las nubes. Ahora, lo que importa: la Copa de Honor."},
+      ]},
     {ds: '02/11/2026', d: fmtD('02/11/2026'), t: 'El efecto barril no alcanzó: Tijera 5-2 Old Proplans', st: 'La Copa de Honor sigue siendo el norte', imgSrc: 'https://img.sportcenter.com.uy/photos/1100/1/10/5/medium/06z1ffvZ8REa4K0C04w9SPJvb0GPxEe9jfyeYJHW.jpeg', go: 'om-02112026', b: 'Por la 10.ª fecha del Clausura, Old Proplans cayó 5-2 con Tijera en el Parque Sportcenter 3. Los goles de la 38 fueron de Andrés Tilve y Guillermo Leivas; hubo amarillas para Tilve y Alex Larrosa. Del barril de 30 litros del mundialito no hay parte oficial. Este lunes cierra la fase regular contra Los Picas, y después lo que importa: la Copa de Honor.', link: '#old'},
     {ds: '28/10/2026', d: fmtD('28/10/2026'), slug: 'velho-proplao-campeao', t: 'Velho Proplão Campeão: RUMO AO HEXA', st: 'Pudo salir mal, pero salió bien', b: 'Al parecer, Old Proplans se anotó sin permiso de la directiva en un mundialito de fútbol 7 bajo el seudónimo «Brasil», y con el diario del lunes podemos decir que fue un éxito: no hubo lesionados, que es lo más importante.', imgSrc: 'fotos/news-old-mundialito.jpg', video: true, link: '#old', art: [
       {img: 'fotos/news-old-mundialito.jpg', cap: 'Los campeones con la copa de chocolate, igualita a la de la FIFA.'},
@@ -1172,6 +1186,7 @@ function viewNoticias() {
     ...recentHT.map(h => { const v = VIDEOS.find(x => x.rival === h.m.r && x.tour === h.m.t.s);
       return {ds: h.m.d, d: fmtD(h.m.d), t: `${HTL(h.g)} de ${h.n === 'Juan Castro' ? 'Juanchi Castro' : h.n} contra ${h.m.r}`, b: `${h.n} hizo ${h.g} goles en el ${h.m.gf}-${h.m.gc} a ${h.m.r}, por el ${h.m.t.k}.` + (v ? ' Mirá el resumen y su palabra después del partido.' : ''), link: v ? '#videos' : '#a2026', who: h.n, video: !!v}; }),
   ];
+  items.push(...NEWS30());
   items.push(...OLD_NEWS());
   items.push({ds: '21/09/2026', d: fmtD('21/09/2026'), t: 'Pro-Plan 1-0 Unión FC: gol de Bogliacino y arco en cero', b: 'Por la 4.ª fecha del Clausura 2026, Pro-Plan le ganó 1-0 a Unión FC en el Parque Sportcenter 3. El gol fue de Mariano Bogliacino y el arco quedó en cero. Fue la tercera victoria del torneo, en un partido con 16 convocados y una roja para Gabriel Arruti. Mirá el resumen, con aparición celestial incluida.', imgSrc: 'fotos/news-chirola.jpg', video: true, link: '#videos'});
   { const lt = TORS[TORS.length - 1], lm = lt.m[lt.m.length - 1];
@@ -1281,7 +1296,7 @@ const VIEWS = [...NAV, ...YEARS.map(y => ['a' + y, String(y)]), ['plantel', 'Pla
 const PARENT = k => k.startsWith('a20') ? 'campeonatos' : k === 'plantel' ? 'inicio' : k;
 function route() {
   let h = (location.hash || '#inicio').slice(1), deepV = null;
-  let deepN = null; if (h.startsWith('nota-')) { deepN = OLD_NEWS().find(x => x.slug === h.slice(5)); h = deepN && deepN.link ? deepN.link.slice(1) : 'old'; }
+  let deepN = null; if (h.startsWith('nota-')) { deepN = ALL_ARTS().find(x => x.slug === h.slice(5)); h = deepN && deepN.link ? deepN.link.slice(1) : 'old'; }
   if (h.startsWith('v-')) { deepV = VIDEOS.find(v => v.id === h.slice(2)); if (deepV) { const t = TORS.find(x => x.s === deepV.tour); VYEAR = t ? t.y : 'entr'; } h = 'videos'; }
   const key = VIEWS.some(v => v[0] === h) ? h : 'inicio';
   $('#nav').innerHTML = NAV.map(([k, l]) => `<a href="#${k}"${k === 'old' ? ' class="nav-old"' : ''}${k === PARENT(key) ? ' aria-current="page"' : ''}>${l === 'Old Proplans' ? crestSVG({old: true, detail: false}) + 'Old<span class="xs"> Proplans</span>' : l}</a>`).join('');
@@ -1315,7 +1330,7 @@ document.addEventListener('click', e => {
     if (v.requestFullscreen) v.requestFullscreen().catch(() => v.webkitEnterFullscreen && v.webkitEnterFullscreen());
     else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
     if (v.paused) v.play().catch(() => {}); return; }
-  const ns = t.closest('[data-nshare]'); if (ns) { const it = OLD_NEWS().find(x => x.slug === ns.dataset.nshare); const url = 'https://federekes.github.io/ProPlanFC/n/' + ns.dataset.nshare + '.html';
+  const ns = t.closest('[data-nshare]'); if (ns) { const it = ALL_ARTS().find(x => x.slug === ns.dataset.nshare); const url = 'https://federekes.github.io/ProPlanFC/n/' + ns.dataset.nshare + '.html';
     if (navigator.share) { navigator.share({title: it ? it.t : 'PROPLAN FC', url}).catch(err => { if (err && err.name !== 'AbortError') copyText(url).then(ok => toast(ok ? 'Link copiado' : url)); }); return; }
     copyText(url).then(ok => toast(ok ? 'Link copiado. Pegalo en WhatsApp.' : url)); return; }
   const sh = t.closest('[data-share],[data-copy]'); if (sh) { const v = VIDEOS.find(x => x.id === (sh.dataset.share || sh.dataset.copy)); if (!v) return; const url = vlink(v);
