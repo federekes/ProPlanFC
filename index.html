@@ -253,6 +253,11 @@ section+section{border-top:1px solid var(--line)}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
 .tools input,.tools select{background:var(--pitch);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 12px;font:inherit;min-width:0}
 .tools input{flex:1 1 220px}
+.tools select{flex:1 1 150px}
+.fbtns{display:flex;gap:10px;flex:1 1 240px}
+.fbtns .fbtn{flex:1}
+.fbtn{background:var(--pitch);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer}
+.fbtn.go{background:var(--ink);color:var(--pitch);border-color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 .card{all:unset;box-sizing:border-box;cursor:pointer;background:var(--pitch);border:1px solid var(--line);border-radius:12px;padding:14px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
 .card:hover{border-color:var(--crest);transform:translateY(-2px);transition:transform .15s}
@@ -1289,8 +1294,9 @@ function viewOld() {
 }
 function viewPlantel() {
   return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Plantel histórico</span><h2>${DATA.players.length} jugadores</h2><p class="lead">Todos los que jugaron al menos un partido oficial. Tocá a uno para ver su ficha.</p></div>
-    <div class="tools"><input id="q" type="search" placeholder="Buscar jugador" aria-label="Buscar jugador">
-      <select id="sort" aria-label="Ordenar"><option value="pj">Más partidos</option><option value="g">Más goles</option><option value="a">Más amarillas</option><option value="r">Más rojas</option><option value="n">Nombre</option></select></div>
+    <form class="tools" id="flt"><input id="q" type="search" placeholder="Buscar jugador" aria-label="Buscar jugador" enterkeyhint="search">
+      <select id="sort" aria-label="Ordenar"><option value="pj">Más partidos</option><option value="g">Más goles</option><option value="a">Más amarillas</option><option value="r">Más rojas</option><option value="n">Nombre</option></select>
+      <span class="fbtns"><button type="submit" class="fbtn go">Filtrar</button><button type="reset" class="fbtn">Limpiar filtros</button></span></form>
     <div class="grid" id="grid"></div></section>`;
 }
 function renderGrid() {
@@ -1396,7 +1402,8 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if ($('#lb').open && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { LB.i = (LB.i + (e.key === 'ArrowRight' ? 1 : -1) + LB.m.fotos.length) % LB.m.fotos.length; drawLB(); return; } if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.rrow,.bar')) { e.preventDefault(); e.target.click(); } });
-document.addEventListener('input', e => { if (e.target.matches('#q,#sort')) renderGrid(); });
+document.addEventListener('submit', e => { if (e.target.id === 'flt') { e.preventDefault(); document.activeElement?.blur(); renderGrid(); } });
+document.addEventListener('reset', e => { if (e.target.id === 'flt') setTimeout(renderGrid); });
 function toggle(box, force) {
   const open = force ?? !box.classList.contains('open');
   box.classList.toggle('open', open);
