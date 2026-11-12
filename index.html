@@ -1222,7 +1222,7 @@ function viewNoticias() {
       return {ds: h.m.d, d: fmtD(h.m.d), t: `${HTL(h.g)} de ${h.n === 'Juan Castro' ? 'Juanchi Castro' : h.n} contra ${h.m.r}`, b: `${h.n} hizo ${h.g} goles en el ${h.m.gf}-${h.m.gc} a ${h.m.r}, por el ${h.m.t.k}.` + (v ? ' Mirá el resumen y su palabra después del partido.' : ''), link: v ? '#videos' : '#a2026', who: h.n, video: !!v}; }),
   ];
   items.push(...NEWS30());
-  items.push(...OLD_NEWS().filter(x => !x.oldOnly));
+  /* Las noticias de Old Proplans van solo en su sección (#old). */
   items.push({ds: '21/09/2026', d: fmtD('21/09/2026'), t: 'Pro-Plan 1-0 Unión FC: gol de Bogliacino y arco en cero', b: 'Por la 4.ª fecha del Clausura 2026, Pro-Plan le ganó 1-0 a Unión FC en el Parque Sportcenter 3. El gol fue de Mariano Bogliacino y el arco quedó en cero. Fue la tercera victoria del torneo, en un partido con 16 convocados y una roja para Gabriel Arruti. Mirá el resumen, con aparición celestial incluida.', imgSrc: 'fotos/news-chirola.jpg', video: true, link: '#videos'});
   { const lt = TORS[TORS.length - 1], lm = lt.m[lt.m.length - 1];
     Object.entries(NOTAS).forEach(([dd, n]) => { if (!lm || dd !== lm.d) { const mm = lt.m.find(x => x.d === dd), vv = mm && VIDEOS.find(x => x.rival === mm.r && x.d === dd);
