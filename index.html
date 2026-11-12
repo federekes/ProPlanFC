@@ -663,6 +663,9 @@ function drawLB() {
     <button class="lbn prev" data-lbstep="-1" aria-label="Anterior">‹</button><button class="lbn next" data-lbstep="1" aria-label="Siguiente">›</button>`;
 }
 const VIDEOS = [
+  {id: 'cl26-f11', tour: 'Cl 26', rival: 'Pichanga FC', d: '09/11/2026', title: 'Pichanga 3-2 Pro-Plan: una noche en la que no salió nada', sub: 'Clausura 2026 · 11.ª fecha',
+   src: 'videos/cl26-f11-pichanga.mp4', poster: 'videos/cl26-f11-pichanga.jpg', dur: '1:42',
+   chapters: [[0, 'Los goles'], [19, 'Después del partido'], [57, 'Más goles']], credit: 'Gentileza: Punta Sport TV'},
   {id: 'cl26-f10', tour: 'Cl 26', rival: 'Olympique de Mareo', d: '02/11/2026', title: 'Pro-Plan 5-0 Olympique de Mareo: inalcanzable en el Clausura', sub: 'Clausura 2026 · 10.ª fecha',
    src: 'videos/cl26-f10-olympique.mp4', poster: 'videos/cl26-f10-olympique.jpg', dur: '2:01',
    chapters: [[0, 'Los goles'], [20, 'Después del partido']], credit: 'Gentileza: Punta Sport TV'},
@@ -1168,10 +1171,11 @@ function ultResHTML() {
     ${v ? videoCard(v) : ''}</div>`;
 }
 function NEWS30() { return [
-    {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'proplan-primero-anual', t: "Pro-Plan cayó con Pichanga, pero terminó primero en la anual", st: "Leicester también perdió · Ahora, mano a mano: le sirve el empate", b: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, que con el triunfo se metió en la Copa de Plata. Fue la primera derrota del equipo en el torneo. El traspié no costó caro: Leicester, el único que podía alcanzarlo, también perdió, y Pro-Plan terminó primero en la tabla anual. Ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate.", link: '#noticias', art: [
-      {p: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, que con el triunfo se metió en la Copa de Plata. Fue la primera derrota del equipo en el torneo."},
-      {p: "El traspié no costó caro: Leicester, el único que podía alcanzarlo, también perdió, y Pro-Plan terminó primero en la tabla anual."},
-      {p: "Ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate."},
+    {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'proplan-primero-anual', t: "Pro-Plan cayó con Pichanga, pero terminó primero en la anual", st: "Leicester también perdió · Ahora, mano a mano: le sirve el empate", b: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, en una noche en la que no salió nada. Fue la primera derrota del equipo en el torneo. Por suerte, Leicester también perdió, y Pro-Plan quedó primero en la tabla anual. Un partido que sirve para espabilar: ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate.", imgSrc: 'videos/cl26-f11-pichanga.jpg', video: true, link: '#noticias', art: [
+      {p: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, en una noche en la que no salió nada. Fue la primera derrota del equipo en el torneo."},
+      {video: 'cl26-f11'},
+      {p: "Por suerte, Leicester también perdió, y Pro-Plan quedó primero en la tabla anual."},
+      {p: "Un partido que sirve para espabilar: ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate."},
       ]}]; }
 const ALL_ARTS = () => [...NEWS30(), ...OLD_NEWS()];
 function OLD_NEWS() { return [
