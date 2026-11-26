@@ -668,6 +668,9 @@ function drawLB() {
     <button class="lbn prev" data-lbstep="-1" aria-label="Anterior">‹</button><button class="lbn next" data-lbstep="1" aria-label="Siguiente">›</button>`;
 }
 const VIDEOS = [
+  {id: 'cl26-sf-leicester', tour: 'Cl 26', rival: 'Leicester FC', d: '18/11/2026', title: 'Leicester 4-0 Pro-Plan: siempre hay revancha', sub: 'Clausura 2026 · Semifinal',
+   src: 'videos/cl26-sf-leicester.mp4', poster: 'videos/cl26-sf-leicester.jpg', dur: '0:07',
+   chapters: [[0, 'La portada']], credit: 'Gentileza: Punta Sport TV'},
   {id: 'cl26-f11', tour: 'Cl 26', rival: 'Pichanga FC', d: '09/11/2026', title: 'Pichanga 3-2 Pro-Plan: una noche en la que no salió nada', sub: 'Clausura 2026 · 11.ª fecha',
    src: 'videos/cl26-f11-pichanga.mp4', poster: 'videos/cl26-f11-pichanga.jpg', dur: '1:42',
    chapters: [[0, 'Los goles'], [19, 'Después del partido'], [57, 'Más goles']], credit: 'Gentileza: Punta Sport TV'},
@@ -1177,6 +1180,15 @@ function ultResHTML() {
       return na ? `<a class="tag" href="#nota-${na.slug}" style="display:inline-block;margin-top:10px;font-size:15px;padding:8px 14px">▶ Ver video</a>` : videoCard(v); })()}</div>`;
 }
 function NEWS30() { return [
+    {ds: '18/11/2026', d: fmtD('18/11/2026'), slug: 'semifinal-clausura-siempre-hay-revancha', t: "Semifinal Clausura: Siempre hay revancha", st: "Semifinal Clausura: Leicester 4 - Proplan 0", b: "Por la semifinal del Clausura 2026, Pro-Plan perdió 4-0 con Leicester, en una noche en la que no salió nada. Sirvió para espabilar y corregir cosas: ahora hay que esperar al ganador de Tijera y Leicester para ir por el Tri. Donde se ganó, como siempre, fue en el tercer tiempo.", imgSrc: 'videos/cl26-sf-leicester.jpg', video: true, link: '#noticias', art: [
+      {p: "Por la semifinal del Clausura 2026, Pro-Plan perdió 4-0 con Leicester. Fue una noche en la que no salió nada: Pro-Plan perdió el medio de la cancha y al rival le salía todo."},
+      {video: 'cl26-sf-leicester'},
+      {p: "Una noche que sirvió para espabilar y para corregir cosas. Ahora hay que esperar al ganador de Tijera y Leicester para ir por el Tri."},
+      {p: "Donde se ganó, como siempre, fue en el tercer tiempo, donde se comió asado como si no hubiera mañana."},
+      {p: "La previa también pasó factura: el asado del jueves anterior al partido en la sede, la casa del capitán, dejó un plantel cansado y con resaca. El Jägermeister del Manzana hizo lo suyo, en una noche en la que el Bolsa llegó a la 1 AM y el presidente se quedó sin nafta en el Focus."},
+      {p: "Como siempre, se rompieron varios vasos, pero faltó la fumaça del brasilero: el proveedor de líquido de humo no llegó. Se pasó increíble, y las carnes del Pepe, como siempre, no fallaron."},
+      {p: "Ahora, a cuidar las piernas en la semi por la Copa de Plata contra Finisterre y a pensar en la final anual, que es el objetivo principal del año."},
+      ]},
     {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'proplan-primero-anual', t: "Pro-Plan cayó con Pichanga, pero terminó primero en la anual", st: "Leicester también perdió · Ahora, mano a mano: le sirve el empate", b: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, en una noche en la que no salió nada. Fue la primera derrota del equipo en el torneo. Por suerte, Leicester también perdió, y Pro-Plan quedó primero en la tabla anual. Un partido que sirve para espabilar: ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate.", imgSrc: 'videos/cl26-f11-pichanga.jpg', video: true, link: '#noticias', art: [
       {p: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, en una noche en la que no salió nada. Fue la primera derrota del equipo en el torneo."},
       {video: 'cl26-f11'},
