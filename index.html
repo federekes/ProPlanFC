@@ -166,7 +166,7 @@ section+section{border-top:1px solid var(--line)}
 
 /* fotos */
 .art-sh{align-self:flex-start;display:inline-flex;gap:8px;align-items:center;background:#25D366;color:#0b1a10;border:0;border-radius:999px;padding:8px 14px;font-weight:700;cursor:pointer;font-size:14px}.art-sh svg{width:18px;height:18px}
-.art h3{font-size:30px;line-height:1.05}.art .art-st{margin:-8px 0 0;color:var(--gold);font-style:italic}.art p{margin:0;line-height:1.6}.art figure{margin:0}.art figure img{width:100%;border-radius:12px;display:block}.art figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.art h3{font-size:30px;line-height:1.05}.art .art-st{margin:-8px 0 0;color:var(--gold);font-style:italic}.art p{margin:0;line-height:1.6}.art figure{margin:0}.art figure img{width:100%;border-radius:12px;display:block}.art figcaption{font-size:13px;color:var(--muted);margin-top:6px}.art-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.art-gal img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block}
 .vcard[id]{scroll-margin-top:84px}
 .mt[id]{scroll-margin-top:84px}
 .th-more{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,10,14,.62);color:#fff;font-family:var(--f-label);font-weight:700;font-size:22px;letter-spacing:.04em}
@@ -1186,6 +1186,15 @@ function ultResHTML() {
       return na ? `<a class="tag" href="#nota-${na.slug}" style="display:inline-block;margin-top:10px;font-size:15px;padding:8px 14px">▶ Ver video</a>` : videoCard(v); })()}</div>`;
 }
 function NEWS30() { return [
+    {ds: '23/11/2026', d: fmtD('23/11/2026'), slug: 'definicion-copa-de-plata-finisterre', t: "Pro-Plan vs Finisterre: definición Copa de Plata", st: "Finisterre 2 - Pro-Plan 2 · Pro-Plan ganó 4-2 en los penales", b: "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026. Terminó 2-2, con goles de Fernando Pintos y Luis Del Castillo, y Pro-Plan se la llevó 4-2 en los penales.", imgSrc: 'videos/cp26-finisterre.jpg', video: true, link: '#noticias', art: [
+      {"p": "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026 en la cancha 1 del Parque Sportcenter. Terminó 2-2 y Pro-Plan se la llevó 4-2 en los penales."},
+      {"p": "Los goles de Pro-Plan fueron de Fernando Pintos y Luis Del Castillo; por Finisterre marcaron Félix Rivadavia y Felipe De León."},
+      {"p": "El partido completo, con el penal que no fue:"},
+      {"video": "cp26-finisterre"},
+      {"p": "Árbitro: Federico Correa; líneas: Lucía Méndez y Gerardo Correa."},
+      {"p": "Pro-Plan jugó con un 4-4-2, con Mauricio Hermoso como DT. Los convocados: G. Ruiz, R. Tejera, M. Finocchietti, L. Muñoz, M. Prieto, F. Suárez, S. Cersosimo, E. Tricotti, F. Pintos, P. Berto, L. Del Castillo, F. Quintana, G. Arruti, J. Shaw, N. Dell Acqua y N. Scorza."},
+      {"p": "Gracias a Punta Sport TV por las imágenes."},
+      ]},
     {ds: '16/11/2026', d: fmtD('16/11/2026'), slug: 'semifinal-clausura-siempre-hay-revancha', t: "Semifinal Clausura: Siempre hay revancha", st: "Semifinal Clausura: Leicester 4 - Proplan 0", b: "Por la semifinal del Clausura 2026, Pro-Plan perdió 4-0 con Leicester, en una noche en la que no salió nada. Sirvió para espabilar y corregir cosas: ahora hay que esperar al ganador de Tijera y Leicester para ir por el Tri. Donde se ganó, como siempre, fue en el tercer tiempo.", imgSrc: 'videos/cl26-sf-leicester.jpg', video: true, link: '#noticias', art: [
       {p: "Por la semifinal del Clausura 2026, Pro-Plan perdió 4-0 con Leicester. Fue una noche en la que no salió nada: Pro-Plan perdió el medio de la cancha y al rival le salía todo."},
       {video: 'cl26-sf-leicester'},
@@ -1196,6 +1205,10 @@ function NEWS30() { return [
       {p: "La previa también pasó factura: el asado del jueves anterior al partido en la sede, la casa del capitán, dejó un plantel cansado y con resaca. El Jägermeister del Manzana hizo lo suyo, en una noche en la que el Bolsa llegó a la 1 AM y el presidente se quedó sin nafta en el Focus."},
       {p: "Como siempre, se rompieron varios vasos, pero faltó la fumaça del brasilero: el proveedor de líquido de humo no llegó. Se pasó increíble, y las carnes del Pepe, como siempre, no fallaron."},
       {p: "Ahora, a cuidar las piernas en la semi por la copa de leche (Copa de Plata) contra Finisterre y a pensar en la final anual, que es el objetivo principal del año."},
+      {"p": "La ficha del partido: Pro-Plan 0-4 Leicester, el lunes 16 de noviembre a las 21:30 en la cancha 1 del Parque Sportcenter, por la clasificación a las Copas de Oro y Plata del Clausura 2026. Árbitro: Juan Falero; líneas: Gerardo Correa y Lucía Méndez."},
+      {"p": "Los goles de Leicester fueron de Matías Lemole (2), Rodrigo Moreira e Ignacio González."},
+      {"p": "Pro-Plan salió con un 4-4-2, con Mauricio Hermoso como DT. Los convocados: G. Ruiz, R. Tejera, M. Finocchietti, L. Muñoz, J. Shaw, S. Cersosimo, J. Barusso, N. Scorza, F. Pintos, P. Berto, A. Nieto, A. Gostanian, E. Tricotti, F. Suárez, F. Quintana, G. Arruti, J. Castro, L. Del Castillo, M. Bogliacino, M. Prieto y M. Fígoli."},
+      {"gal": ["https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/0aZajg129yJnu5kx9ml3ryWANC5W5Mcr6HafVdRW.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/2EjtlTCxYAynv4Y6MsNktm72lLCWf6gNoNQyGHTo.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/5Y64Y41b7qkEyX2KZICj0O9oXJVY2fRzjUjshczF.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/U3crVpX3Y7lcWLIES0tw0yjmHNJ5RQFOsj46BCVl.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/cZSgEo2QPAUAG9Ulh2E83lnRYSnrsbS7kniWuiNs.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/em4gb4IvvFmJDl6RkVBRzmT78Xdo3oj3xoGWWzKK.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/gy4FqsuPThJ0QB9uiQEiY1FK04jhbCgTOPLOh3ob.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/lNJaClWM9c0SnnNl0kiEbRtE6ODAmsNz6r2tFnSj.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/nTSUZq6a9sDKeXKr764b4rkZK64Y0KHCsQs6xTzg.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/ngIH06At1aO08wadFwCUqbbfS72G92pVQpxqRA2H.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/sSCRdppAJWvBGG5WR3dgAwjaKLUdQXoLZPbV9ZRq.jpeg", "https://img.sportcenter.com.uy/photos/1146/1/1/1/medium/v7qdrhgI65va1MYU0gpQJar36YqbUS27CohUP3E0.jpeg"], "cap": "Las fotos del partido. Gentileza SportCenter y PuntaSport TV."},
       {p: "Gracias a Punta Sport TV por las imágenes."},
       ]},
     {ds: '09/11/2026', d: fmtD('09/11/2026'), slug: 'proplan-primero-anual', t: "Pro-Plan cayó con Pichanga, pero terminó primero en la anual", st: "Leicester también perdió · Ahora, mano a mano: le sirve el empate", b: "En la última fecha del Clausura 2026, Pro-Plan perdió 3-2 con Pichanga FC, en una noche en la que no salió nada. Fue la primera derrota del equipo en el torneo. Por suerte, Leicester también perdió, y Pro-Plan quedó primero en la tabla anual. Un partido que sirve para espabilar: ahora viene el mano a mano con Leicester, y a Pro-Plan le sirve el empate.", imgSrc: 'videos/cl26-f11-pichanga.jpg', video: true, link: '#noticias', art: [
@@ -1236,7 +1249,7 @@ function newsCardHTML(it) { return `<a class="nw" href="${it.link}"${it.art ? ` 
 function openArt(it) {
   const d = $('#dlg');
   d.innerHTML = `<button class="x" aria-label="Cerrar" data-close>×</button><article class="dlg art"><span class="eyebrow">${it.d}</span>${it.slug ? `<button class="art-sh" data-nshare="${it.slug}">${ICON.share}<span>Compartir nota</span></button>` : ''}<h3>${esc(it.t)}</h3>${it.st ? `<p class="art-st">${esc(it.st)}</p>` : ''}
-    ${it.art.map(x => x.p ? `<p>${esc(x.p)}</p>` : x.img ? `<figure><img src="${x.img}" alt="${esc(x.cap || '')}" loading="lazy">${x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : ''}</figure>` : x.video ? (v => v ? videoCard(v) : '')(VIDEOS.find(v => v.id === x.video)) : '').join('')}</article>`;
+    ${it.art.map(x => x.p ? `<p>${esc(x.p)}</p>` : x.gal ? `<figure><div class="art-gal">${x.gal.map(u => `<a href="${u}" target="_blank" rel="noopener"><img src="${u}" alt="" loading="lazy"></a>`).join('')}</div>${x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : ''}</figure>` : x.img ? `<figure><img src="${x.img}" alt="${esc(x.cap || '')}" loading="lazy">${x.cap ? `<figcaption>${esc(x.cap)}</figcaption>` : ''}</figure>` : x.video ? (v => v ? videoCard(v) : '')(VIDEOS.find(v => v.id === x.video)) : '').join('')}</article>`;
   d.showModal(); d.scrollTop = 0;
 }
 function viewNoticias() {
