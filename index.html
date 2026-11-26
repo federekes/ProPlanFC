@@ -668,6 +668,9 @@ function drawLB() {
     <button class="lbn prev" data-lbstep="-1" aria-label="Anterior">‹</button><button class="lbn next" data-lbstep="1" aria-label="Siguiente">›</button>`;
 }
 const VIDEOS = [
+  {id: 'cp26-finisterre-portada', tour: 'Cl 26', rival: 'Finisterre FC', d: '23/11/2026', ord: 1, title: 'La jerarquía del Bolsa trajo otra copa', sub: 'Clausura 2026 · Definición Copa de Plata',
+   src: 'videos/cp26-finisterre-portada.mp4', poster: 'videos/cp26-finisterre-portada.jpg', dur: '0:08',
+   chapters: [[0, 'La portada']], credit: 'Gentileza: Punta Sport TV'},
   {id: 'cp26-finisterre', tour: 'Cl 26', rival: 'Finisterre FC', d: '23/11/2026', title: 'Pro-Plan vs Finisterre: definición Copa de Plata', sub: 'Clausura 2026 · Definición Copa de Plata',
    src: 'videos/cp26-finisterre.mp4', poster: 'videos/cp26-finisterre.jpg', dur: '8:16',
    chapters: [[0, 'El partido'], [224, 'El penal que no fue']], credit: 'Gentileza: Punta Sport TV'},
@@ -1186,8 +1189,9 @@ function ultResHTML() {
       return na ? `<a class="tag" href="#nota-${na.slug}" style="display:inline-block;margin-top:10px;font-size:15px;padding:8px 14px">▶ Ver video</a>` : videoCard(v); })()}</div>`;
 }
 function NEWS30() { return [
-    {ds: '23/11/2026', d: fmtD('23/11/2026'), slug: 'definicion-copa-de-plata-finisterre', t: "La jerarquía del Bolsa trajo otra copa", st: "Proplan 2 (4) - Finisterre 2 (2)", b: "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026. Terminó 2-2, con goles de Fernando Pintos y Luis Del Castillo, y Pro-Plan se la llevó 4-2 en los penales.", imgSrc: 'videos/cp26-finisterre.jpg', video: true, link: '#noticias', art: [
+    {ds: '23/11/2026', d: fmtD('23/11/2026'), slug: 'definicion-copa-de-plata-finisterre', t: "La jerarquía del Bolsa trajo otra copa", st: "Proplan 2 (4) - Finisterre 2 (2)", b: "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026. Terminó 2-2, con goles de Fernando Pintos y Luis Del Castillo, y Pro-Plan se la llevó 4-2 en los penales.", imgSrc: 'videos/cp26-finisterre-portada.jpg', video: true, link: '#noticias', art: [
       {"p": "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026 en la cancha 1 del Parque Sportcenter. Terminó 2-2 y Pro-Plan se la llevó 4-2 en los penales."},
+      {video: 'cp26-finisterre-portada'},
       {"p": "Los goles de Pro-Plan fueron de Fernando Pintos y Luis Del Castillo; por Finisterre marcaron Félix Rivadavia y Felipe De León."},
       {"p": "El primero de Pro-Plan, del Nano, fue un golazo hermoso. Después de un pase, dominó, le hizo la del 30 al rival, casi se la saca un compañero (al que le gritó que se la dejara), se perfiló hacia la medialuna, cargó la pata y metió un golazo de Jabulani muy parecido al de Forlán contra Ghana en 2010. La calidad de nuestro goleador histórico, siempre marcando goles clave: un clase A."},
       {"p": "Punto aparte para Gabriel Ruiz, el Bolsa, el héroe de la noche: además de atajar dos penales en la definición, tuvo un par de salvadas dignas de Ladislao Mazurkiewicz o del propio Jorge «Superman» Seré. La jerarquía del Bolsa trajo otra copa."},
