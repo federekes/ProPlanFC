@@ -353,7 +353,7 @@ dialog::backdrop{background:rgba(5,9,20,.75)}
 .season-r{color:var(--muted);font-size:14px}
 .vgroup+.vgroup{margin-top:30px}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.news{display:flex;flex-direction:column;gap:12px}.news-top{margin:0 0 22px}.news-top .nw{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;border-color:var(--gold)}.news-top .nw-img{width:100%;height:auto;max-height:none;aspect-ratio:16/7;border-radius:0;flex:none}.news-top .nw-img img{width:100%;height:100%;object-fit:cover}.news-top .nw-b{padding:16px 20px 20px}.news-top h3{font-size:clamp(26px,4vw,40px)!important;line-height:1.05}
+.news{display:flex;flex-direction:column;gap:12px}.news-top{margin:0 0 22px}.news-top .nw{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;border-color:var(--gold)}.news-top .nw-img{width:100%;height:auto;max-height:none;aspect-ratio:1088/476;border-radius:0;flex:none}.news-top .nw-img img,.news-top .nw-img video{width:100%;height:100%;object-fit:cover;object-position:top;display:block}.news-top .nw-b{padding:16px 20px 20px}.news-top h3{font-size:clamp(26px,4vw,40px)!important;line-height:1.05}
 .nw{display:flex;gap:16px;align-items:center;text-decoration:none;color:inherit;background:var(--pitch);border:1px solid var(--line);border-radius:14px;padding:14px}
 .nw:hover{border-color:var(--crest)}
 .nw.empty{border-style:dashed;background:none}
@@ -869,6 +869,8 @@ function watchVideo(vid) {
   if (!vid || vid.dataset.blob || vid._watch) return;
   vid._watch = setTimeout(() => { vid._watch = null; if (vid.readyState < 3 && vid.currentTime < 0.5) videoFallback(vid); }, 3500);
 }
+/* Videos de fondo (titular de Noticias): no entran en la lógica de los reproductores. */
+if (document.addEventListener) ['play', 'waiting', 'stalled', 'error', 'playing', 'pause', 'ended', 'canplay', 'seeked', 'seeking', 'timeupdate'].forEach(ev => document.addEventListener(ev, e => { if (e.target && e.target.dataset && e.target.dataset.bg) e.stopImmediatePropagation(); }, true));
 if (document.addEventListener) {
   ['play', 'waiting', 'stalled'].forEach(ev => document.addEventListener(ev, e => { if (e.target && e.target.tagName === 'VIDEO') watchVideo(e.target); }, true));
   document.addEventListener('error', e => { const v = e.target && (e.target.tagName === 'VIDEO' ? e.target : e.target.tagName === 'SOURCE' ? e.target.parentElement : null); if (v) videoFallback(v); }, true);
@@ -1189,7 +1191,7 @@ function ultResHTML() {
       return na ? `<a class="tag" href="#nota-${na.slug}" style="display:inline-block;margin-top:10px;font-size:15px;padding:8px 14px">▶ Ver video</a>` : videoCard(v); })()}</div>`;
 }
 function NEWS30() { return [
-    {ds: '23/11/2026', d: fmtD('23/11/2026'), slug: 'definicion-copa-de-plata-finisterre', top: true, t: "La jerarquía del Bolsa trajo otra copa", st: "Proplan 2 (4) - Finisterre 2 (2)", b: "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026. Terminó 2-2, con goles de Fernando Pintos y Luis Del Castillo, y Pro-Plan se la llevó 4-2 en los penales.", imgSrc: 'videos/cp26-finisterre-tapa.jpg', video: true, link: '#noticias', art: [
+    {ds: '23/11/2026', d: fmtD('23/11/2026'), slug: 'definicion-copa-de-plata-finisterre', top: true, topVideo: 'videos/cp26-finisterre-portada.mp4', t: "La jerarquía del Bolsa trajo otra copa", st: "Proplan 2 (4) - Finisterre 2 (2)", b: "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026. Terminó 2-2, con goles de Fernando Pintos y Luis Del Castillo, y Pro-Plan se la llevó 4-2 en los penales.", imgSrc: 'videos/cp26-finisterre-tapa.jpg', video: true, link: '#noticias', art: [
       {"p": "El lunes 23 de noviembre, Pro-Plan y Finisterre definieron la Copa de Plata del Clausura 2026 en la cancha 1 del Parque Sportcenter. Terminó 2-2 y Pro-Plan se la llevó 4-2 en los penales."},
       {video: 'cp26-finisterre-portada'},
       {"p": "Los goles de Pro-Plan fueron de Fernando Pintos y Luis Del Castillo; por Finisterre marcaron Félix Rivadavia y Felipe De León."},
@@ -1282,7 +1284,7 @@ function viewNoticias() {
   items.sort((a, b) => key(b).localeCompare(key(a)));
   const topIt = items.find(x => x.top), rest = items.filter(x => !x.top);
   return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Lo último</span><h2>Noticias</h2><p class="lead">La próxima fecha, cómo vienen las tablas y las novedades del equipo.</p></div>
-    ${topIt ? `<div class="news news-top">${newsCardHTML(topIt)}</div>` : ''}
+    ${topIt ? `<div class="news news-top">${newsCardHTML(topIt).replace(/<div class="nw-img">[\s\S]*?<\/div>/, topIt.topVideo ? `<div class="nw-img"><video src="${topIt.topVideo}" poster="videos/cp26-finisterre-portada.jpg" data-bg="1" autoplay muted loop playsinline preload="auto"></video></div>` : '$&')}</div>` : ''}
     ${ultResHTML()}
     ${proxHTML()}
     <div class="tablas">${tablaHTML(TABLAS.cl, 'Clausura 2026')}${tablaHTML(TABLAS.an, 'Tabla anual 2026')}</div>
