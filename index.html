@@ -353,7 +353,7 @@ dialog::backdrop{background:rgba(5,9,20,.75)}
 .season-r{color:var(--muted);font-size:14px}
 .vgroup+.vgroup{margin-top:30px}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.news{display:flex;flex-direction:column;gap:12px}.news-top{margin:0 0 22px}.news-top .nw{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;border-color:var(--gold)}.news-top .nw-img{width:100%;height:auto;max-height:none;aspect-ratio:1088/476;border-radius:0;flex:none}.news-top .nw-img img,.news-top .nw-img video{width:100%;height:100%;object-fit:cover;object-position:top;display:block}.news-top .nw-b{padding:16px 20px 20px}.news-top h3{font-size:clamp(26px,4vw,40px)!important;line-height:1.05}
+.news{display:flex;flex-direction:column;gap:12px}.news-top{margin:0 0 22px}.news-top .nw{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;border-color:var(--gold)}.news-top .nw-img{width:100%;height:auto;max-height:none;aspect-ratio:1088/476;border-radius:0;flex:none;overflow:hidden;display:block}.news-top .nw-img img,.news-top .nw-img video{width:100%;height:100%;object-fit:cover;object-position:top;display:block}.news-top .nw-b{padding:16px 20px 20px}.news-top h3{font-size:clamp(26px,4vw,40px)!important;line-height:1.05}
 .nw{display:flex;gap:16px;align-items:center;text-decoration:none;color:inherit;background:var(--pitch);border:1px solid var(--line);border-radius:14px;padding:14px}
 .nw:hover{border-color:var(--crest)}
 .nw.empty{border-style:dashed;background:none}
@@ -1285,10 +1285,8 @@ function viewNoticias() {
   const topIt = items.find(x => x.top), rest = items.filter(x => !x.top);
   return `<section class="wrap"><div class="sec-head"><span class="eyebrow">Lo último</span><h2>Noticias</h2><p class="lead">La próxima fecha, cómo vienen las tablas y las novedades del equipo.</p></div>
     ${topIt ? `<div class="news news-top">${newsCardHTML(topIt).replace(/<div class="nw-img">[\s\S]*?<\/div>/, topIt.topVideo ? `<div class="nw-img"><video src="${topIt.topVideo}" poster="videos/cp26-finisterre-portada.jpg" data-bg="1" autoplay muted loop playsinline preload="auto"></video></div>` : '$&')}</div>` : ''}
-    ${ultResHTML()}
     ${proxHTML()}
-    <div class="tablas">${tablaHTML(TABLAS.cl, 'Clausura 2026')}${tablaHTML(TABLAS.an, 'Tabla anual 2026')}</div>
-    <div class="tablas" style="margin-top:18px">${crucesHTML(CRUCES, 'Lo que viene · Clausura 2026', 'Pro-Plan FC')}${crucesHTML([{g: 'Triangular Copa de Honor', ms: HONOR}], 'Old Proplans · Copa de Honor', 'Old Proplans')}</div>
+    <div class="tablas">${crucesHTML(CRUCES, 'Lo que viene · Clausura 2026', 'Pro-Plan FC')}${crucesHTML([{g: 'Triangular Copa de Honor', ms: HONOR}], 'Old Proplans · Copa de Honor', 'Old Proplans')}</div>
     <p class="note" style="margin:8px 0 28px">Actualizado tras la ${TABLAS.upd}. Fuente: <a href="${TABLAS.url}/posiciones" target="_blank" rel="noopener">SportCenter ↗</a></p>
     <div class="news">${rest.map(newsCardHTML).join('')}
     <div class="nw empty"><div class="nw-img">${ICON.news}</div><div class="nw-b"><h3 style="font-size:20px">Próximas noticias</h3><p>Fichajes, previas de las finales, cumpleaños y todo lo que pase en el club.</p></div></div></div></section>`;
